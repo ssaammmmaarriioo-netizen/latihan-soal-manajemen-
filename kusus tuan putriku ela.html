@@ -1,0 +1,2346 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Latihan Soal Manajemen (115 Soal) | Semangat Elaa! 🔥</title>
+<style>
+/* VARIABEL CSS - Diperbarui untuk Tema Ceria */
+:root { 
+    --bg:#f0f8ff; /* Light Sky Blue */
+    --fg:#1f2937; /* Dark Gray */
+    --muted:#6b7280; /* Gray */
+    --card:#ffffff; 
+    --border:#e5e7eb; 
+    --accent:#4c51bf; /* Indigo/Purple */
+    --accent-light:#e0e7ff;
+    --accent-dark:#3730a3;
+    --ok:#10b981; /* Emerald Green */
+    --ok-light:#e6fffa;
+    --ok-dark:#065f46;
+    --mark:#f97316; /* Orange */
+    --error:#ef4444; /* Red */
+    --error-light:#fee2e2;
+    --error-dark:#991b1b;
+}
+
+/* RESET DAN DASAR */
+* { box-sizing:border-box; }
+body { 
+    margin:0; 
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif; 
+    background:var(--bg); 
+    color:var(--fg); 
+    min-height: 100vh;
+    padding-bottom: 70px; /* Space for the bottom nav on mobile */
+}
+
+/* HEADER */
+header { 
+    position:sticky; 
+    top:0; 
+    backdrop-filter: blur(8px); 
+    background:rgba(255,255,255,.95); 
+    border-bottom:1px solid var(--border); 
+    z-index: 100; 
+    transition: all .2s ease-in-out;
+}
+.container { 
+    max-width:1100px; 
+    margin:0 auto; 
+    padding:12px 16px; 
+}
+.row-main { 
+    display:flex; 
+    gap:16px; 
+    align-items:center; 
+    justify-content:space-between; 
+}
+.toolbar { 
+    display:flex; 
+    gap:8px; 
+    align-items:center; 
+    justify-content:flex-end; 
+}
+.btn { 
+    border:1px solid var(--border); 
+    background:white; 
+    padding:8px 12px; 
+    border-radius:10px; 
+    cursor:pointer; 
+    transition: background .1s, transform .1s;
+    font-size: 14px;
+    font-weight: 500;
+}
+.btn.primary { 
+    background:var(--accent); 
+    color:white; 
+    border-color:var(--accent); 
+}
+.btn.danger {
+    background:var(--error);
+    color:white;
+    border-color:var(--error);
+    border-color:var(--error);
+}
+.btn:hover:not(:disabled) { 
+    background:var(--accent-light);
+    transform: translateY(-1px);
+}
+.btn.primary:hover:not(:disabled) {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* MAIN CONTENT LAYOUT - Optimized for Mobile First */
+main { 
+    padding-top: 16px; 
+    padding-bottom: 24px;
+}
+.row { 
+    display:grid; 
+    grid-template-columns: 1fr; /* Default to 1 column on mobile */
+    gap:16px; 
+    align-items: start;
+}
+@media (min-width: 900px) { 
+    .row { 
+        grid-template-columns: 300px 1fr; /* 2 columns on desktop */
+    } 
+    .toolbar { display: flex; }
+    aside { position: sticky; top: 70px; } /* Sticky sidebar on desktop */
+}
+@media (max-width: 899px) {
+    .toolbar { display: none; } /* Hide export/print on small screen */
+}
+
+/* CARD/PANEL STYLING */
+.card { 
+    background:var(--card); 
+    border:1px solid var(--border); 
+    border-radius:16px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,.05); /* Soft shadow */
+    margin-bottom: 16px;
+}
+.card .body { padding:16px; }
+
+/* Komponen Panel Kiri (Aside) - Now a standard card on mobile */
+#timer { 
+    font-size:1.4em; 
+    font-weight:700; 
+    text-align:center; 
+    padding:10px 0; 
+    color:var(--error); 
+    margin-top: -8px; 
+    margin-bottom: 12px; 
+    border-bottom:1px solid var(--border);
+}
+.h { font-weight:600; color:var(--accent-dark); font-size:14px; margin-bottom:8px; }
+.input { width:100%; border:1px solid var(--border); padding:8px 10px; border-radius:10px; font-size:14px; }
+.switch { display:flex; align-items:center; gap:8px; user-select: none; font-size: 14px; }
+.small { font-size:12px; color:var(--muted); margin-top: 4px;}
+.progress-bar { height:10px; background:#e5e7eb; border-radius:12px; overflow:hidden; }
+.bar { height:10px; background:var(--ok); width:0%; transition: width .2s; }
+.grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:6px; margin-top:8px;}
+@media (min-width: 600px) { 
+    .grid { grid-template-columns: repeat(8, 1fr); }
+}
+@media (min-width: 900px) { 
+    .grid { grid-template-columns: repeat(6, 1fr); } 
+}
+
+.cell { 
+    border:1px solid var(--border); 
+    border-radius:8px; 
+    padding:6px 0; 
+    font-size:12px; 
+    background:white; 
+    text-align: center; 
+    cursor:pointer; 
+    font-weight: 500;
+    transition: background .1s;
+}
+.cell:hover { background: var(--accent-light); border-color: var(--accent); }
+.cell.cur { 
+    background:var(--accent); 
+    color:white; 
+    border-color:var(--accent); 
+    transform: scale(1.05);
+}
+.cell.done { background:var(--ok-light); border-color:var(--ok); color:var(--ok); }
+.cell.mark { background:var(--mark); border-color:var(--mark); color:white; }
+
+
+/* Komponen Area Soal (Section) */
+#qtext { 
+    font-size:1.15em; /* Slightly larger text */
+    line-height:1.6; 
+    margin:12px 0 16px; 
+    font-weight: 600;
+    color: var(--accent-dark);
+}
+.opt { 
+    display:flex; 
+    gap:12px; 
+    border:1px solid var(--border); 
+    padding:14px; 
+    border-radius:12px; 
+    margin-bottom:10px; 
+    cursor:pointer; 
+    background:white;
+    transition: all .1s;
+    font-weight: 500;
+}
+.opt:hover:not(.sel):not(.done):not(.wrong) { background:var(--accent-light); border-color: var(--accent); }
+.opt div:first-child { font-weight: 700; color: var(--accent); }
+.opt div:last-child { flex:1; }
+
+/* Status Jawaban */
+.opt.sel { background:var(--accent-light); border-color:var(--accent); }
+.opt.done { background:var(--ok-light) !important; color:var(--ok-dark) !important; border-color:var(--ok) !important; }
+.opt.done div:first-child { color: var(--ok-dark); }
+.opt.wrong { background:var(--error-light) !important; color:var(--error-dark) !important; border-color:var(--error) !important; }
+.opt.wrong div:first-child { color: var(--error-dark); }
+.opt.correct-answer { 
+    border-color:var(--ok) !important; 
+    background:var(--ok) !important; 
+    color:white !important; 
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5); /* Subtle glow */
+}
+.opt.correct-answer div:first-child { color: white; }
+
+#explanation-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: var(--accent-light); 
+    border: 1px solid var(--accent);
+    color: var(--fg);
+}
+#explanation-box strong { color: var(--accent-dark); }
+
+
+textarea.notes { 
+    width:100%; 
+    min-height:90px; 
+    border:1px solid var(--border); 
+    border-radius:12px; 
+    padding:12px; 
+    font-family: inherit;
+    resize: vertical;
+}
+.hidden { display: none !important; }
+
+/* Hasil Ujian */
+#exam-result { text-align: center; padding: 40px; }
+#exam-result h2 { color: var(--ok); font-size: 2em; margin-bottom: 8px; }
+#exam-result p { font-size: 1.2em; color: var(--fg); margin-bottom: 20px; font-weight: 500;}
+
+/* MOBILE NAVIGATION BAR (Sticky Bottom) */
+#mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    z-index: 1000;
+}
+@media (min-width: 900px) { 
+    #mobile-nav { display: none; }
+}
+#mobile-nav button {
+    flex: 1;
+    padding: 10px 5px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+/* TOAST/FEEDBACK MESSAGE STYLES */
+.toast {
+    position: fixed;
+    bottom: 80px; /* Above mobile nav */
+    left: 50%;
+    transform: translate(-50%, 100px); /* Initially off-screen */
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-weight: 600;
+    z-index: 1001;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+    max-width: 90%;
+    text-align: center;
+}
+.toast.show {
+    transform: translate(-50%, 0); /* Slide into view */
+    opacity: 1;
+}
+@media (min-width: 900px) { 
+    .toast { bottom: 20px; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container row-main">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="height:32px;width:32px;border-radius:12px;background:var(--accent);color:white;display:grid;place-items:center;font-weight:700;">E</div>
+      <div style="font-weight:600; font-size:1.1em;">Soal Manajemen • <span id="total-header">115</span> Soal</div>
+    </div>
+    <div class="toolbar">
+      <button class="btn export" title="Export Progress">💾 Export Progress</button>
+      <button class="btn" onclick="window.print()">🖨️ Cetak</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="row">
+    
+    <aside class="card">
+      <div class="body">
+        
+        <div id="timer" class="hidden">00:00:00</div>
+        
+        <div class="h">Status & Progress</div>
+        <div class="progress-bar" aria-valuemin="0" aria-valuemax="100"><div class="bar" id="progress"></div></div>
+        <div class="small">Terjawab: <span id="answered">0</span> • Bookmark: <span id="bookCount">0</span></div>
+
+        <div style="height:12px;"></div>
+        <div class="h">Navigasi cepat</div>
+        <div id="grid" class="grid">
+          </div>
+
+        <div style="height:12px;"></div>
+        <div class="h">Pengaturan & Mode</div>
+        <div style="display:flex; gap:16px; align-items:center; margin-bottom:10px; flex-wrap: wrap;">
+          <label class="switch">
+            <input id="shuffle" type="checkbox">
+            <span>Acak urutan soal</span>
+          </label>
+          <label class="switch">
+            <input id="showExplanation" type="checkbox" disabled checked>
+            <span>Umpan Balik Instan (Aktif)</span>
+          </label>
+        </div>
+        
+        <div style="height:12px;"></div>
+        <div class="h">Ujian Simulasi (Coba Dulu)</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+          <div>
+            <div class="small">Jumlah soal</div>
+            <input id="jumlah" type="number" class="input" value="50" min="5" max="115">
+          </div>
+          <div>
+            <div class="small">Waktu (menit)</div>
+            <input id="menit" type="number" class="input" value="60" min="5" max="240">
+          </div>
+        </div>
+        <div style="height:8px;"></div>
+        <button class="btn startExam primary" style="width:100%;">Mulai Ujian</button>
+        <button class="btn endExam danger hidden" style="width:100%;">Akhiri Ujian & Lihat Hasil</button>
+      </div>
+    </aside>
+
+    <section class="card" id="quiz-area">
+        <div id="question-view">
+            <div class="body">
+                <div class="row-main">
+                    <div class="small">Soal <span id="qnum">0</span> dari <span id="qtotal">0</span></div>
+                    <div style="display:flex; gap:8px;" class="desktop-nav-only">
+                        <button class="btn prev" title="Soal Sebelumnya">← Prev</button>
+                        <button class="btn next" title="Soal Berikutnya">Next →</button>
+                        <button class="btn jump10" title="Lompat 10 Soal">+10</button>
+                    </div>
+                </div>
+
+                <h2 id="qtext"></h2>
+                
+                <div id="opts"></div>
+
+                <div style="display:flex; gap:8px; margin-top:12px; flex-wrap: wrap;">
+                    <button class="btn bookmark" title="Tandai untuk ditinjau">📌 Bookmark</button>
+                    <button class="btn clear" title="Hapus Jawaban">Kosongkan Jawaban</button>
+                </div>
+                
+                <div id="explanation-box" class="hidden">
+                    <div class="h">Pembahasan</div>
+                    <p id="explanation-text"></p>
+                </div>
+
+                <div style="height:12px;"></div>
+                <div class="h">Catatan saya (Tersimpan Lokal)</div>
+                <textarea class="notes" id="notes" placeholder="Tulis ringkasan atau pembahasan singkat versi kamu"></textarea>
+                <div class="small">Catatan ini otomatis tersimpan di browser Anda.</div>
+            </div>
+        </div>
+        
+        <div id="exam-result" class="hidden">
+            <h2>Hasil Ujian Simulasi!</h2>
+            <p id="final-score"></p>
+            <button class="btn primary" onclick="location.reload()">Selesai & Keluar</button>
+        </div>
+    </section>
+  </div>
+</main>
+
+<div id="mobile-nav">
+    <button class="btn prev" title="Soal Sebelumnya">← Soal</button>
+    <button class="btn bookmark" title="Tandai untuk ditinjau">📌</button>
+    <button class="btn next primary" title="Soal Berikutnya">Soal →</button>
+</div>
+
+
+<script type="application/json" id="data">
+[
+  {
+    "id": 1,
+    "question": "Perencanaan situasional terdiri dari empat tahapan. Tahapan menetapkan indikator situasional dilakukan setelah....",
+    "options": [
+      {"key": "A", "text": "mengembangkan"},
+      {"key": "B", "text": "implementasi"},
+      {"key": "C", "text": "identifikasi kejadian"},
+      {"key": "D", "text": "evaluasi"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Perencanaan situasional terdiri dari empat tahapan utama: 1. Mengembangkan rencana, yaitu membuat rencana utama seperti biasa sambil mempertimbangkan kemungkinan kejadian situasional. 2. Mengidentifikasi kejadian situasional secara formal, yaitu mengenali kondisi khusus yang bisa memengaruhi jalannya rencana. 3. Menetapkan indikator situasional, dilakukan setelah tahap identifikasi kejadian, untuk menentukan tanda-tanda atau ukuran yang menunjukkan bahwa kejadian situasional itu benar-benar terjadi. 4. Mengembangkan rencana situasional untuk setiap kejadian yang telah diidentifikasi dan memiliki indikator tertentu. Jadi, tahap menetapkan indikator situasional dilakukan setelah identifikasi kejadian situasional."
+  },
+  {
+    "id": 2,
+    "question": "Integritas dan loyalitas karyawan merupakan etika tingkat....",
+    "options": [
+      {"key": "A", "text": "masyarakat"},
+      {"key": "B", "text": "kebijakan internal"},
+      {"key": "C", "text": "individu"},
+      {"key": "D", "text": "pemangku kepentingan"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Etika individu berkaitan dengan nilai moral, integritas, dan loyalitas pribadi karyawan. Etika organisasi (kebijakan internal) berkaitan dengan kebijakan dan aturan perusahaan. Etika sosial atau masyarakat berkaitan dengan tanggung jawab sosial perusahaan."
+  },
+  {
+    "id": 3,
+    "question": "Pemimpin ada karena ada pengikutnya merupakan pendekatan kepemimpinan....",
+    "options": [
+      {"key": "A", "text": "romantis"},
+      {"key": "B", "text": "transaksional"},
+      {"key": "C", "text": "transformasional"},
+      {"key": "D", "text": "psikoanalisis"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Pendekatan kepemimpinan romantis menekankan bahwa pemimpin ada karena ada pengikut yang mengakui dan mengikuti arahannya. Transaksional fokus pada pertukaran (imbalan/sanksi). Transformasional fokus pada inspirasi dan visi. Psikoanalisis fokus pada aspek psikologis pemimpin."
+  },
+  {
+    "id": 4,
+    "question": "Perbedaan dari organisasi tall dan organisasi flat adalah....",
+    "options": [
+      {"key": "A", "text": "organisasi tall lebih kolaboratif dibandingkan organisasi flat"},
+      {"key": "B", "text": "organisasi tall lebih egaliter dibandingkan organisasi flat"},
+      {"key": "C", "text": "organisasi flat memiliki sedikit lapisan manajemen dibandingkan dengan tall"},
+      {"key": "D", "text": "organisasi flat lebih cocok untuk organisasi besar dan kaku"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Organisasi flat memiliki sedikit lapisan manajemen (hierarki) sehingga komunikasi lebih cepat dan koordinasi lebih mudah dibandingkan organisasi tall yang memiliki banyak jenjang manajemen."
+  },
+  {
+    "id": 5,
+    "question": "Rasya manajer pemasaran melakukan survei tidak ke seluruh pelanggan, namun mengambil sampel 10 pelanggan dengan pembelian terbanyak, 10 pelanggan pembelian tersering dan 10 pelanggan yang paling jarang membeli untuk menentukan tingkat kepuasan pelanggan di setiap tahun. Dalam hal ini, desain pengendalian yang diterapkan adalah....",
+    "options": [
+      {"key": "A", "text": "prestasi kunci"},
+      {"key": "B", "text": "titik pengendalian strategis"},
+      {"key": "C", "text": "kuantitatif"},
+      {"key": "D", "text": "non-kuantitatif"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Desain titik pengendalian strategis (strategic control point) digunakan untuk memantau area atau kelompok yang paling berpengaruh terhadap keberhasilan tujuan organisasi. Rasya memilih kelompok pelanggan kunci (strategis) untuk memperoleh gambaran efektif."
+  },
+  {
+    "id": 6,
+    "question": "Fintech berupa platform online yang menyediakan fasilitas bagi pemilik dana untuk memberikan pinjaman secara langsung kepada debitur, yaitu....",
+    "options": [
+      {"key": "A", "text": "peer-to-peer Lending"},
+      {"key": "B", "text": "online payment"},
+      {"key": "C", "text": "agregator"},
+      {"key": "D", "text": "crowdfunding"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Peer-to-peer (P2P) lending adalah layanan fintech yang mempertemukan pemberi pinjaman (investor) dengan peminjam (debitur) secara langsung melalui platform online."
+  },
+  {
+    "id": 7,
+    "question": "Wewenang Bank Indonesia (BI) pada penerapan teknologi digital di Indonesia adalah mengatur....",
+    "options": [
+      {"key": "A", "text": "bidang pemanfaatan teknologi dan transaksi elektronik"},
+      {"key": "B", "text": "mekanisme pelaporan data kegiatan e-commerce"},
+      {"key": "C", "text": "sistem pembayaran berbasis digital"},
+      {"key": "D", "text": "penyelenggaraan layanan keuangan berbasis digital (fintech)"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Bank Indonesia (BI) memiliki wewenang dalam mengatur dan menjaga kelancaran sistem pembayaran nasional, termasuk yang berbasis digital (seperti QRIS, e-money, transfer digital). Layanan keuangan berbasis digital (Fintech) secara umum diatur oleh OJK."
+  },
+  {
+    "id": 8,
+    "question": "Peramalan tenaga kerja adalah menentukan kebutuhan tenaga kerja di masa yang akan datang meliputi kebutuhan...",
+    "options": [
+      {"key": "A", "text": "jumlah, pendidikan dan pengalaman"},
+      {"key": "B", "text": "jumlah, tipe dan keahlian"},
+      {"key": "C", "text": "jumlah, tipe dan pengalaman"},
+      {"key": "D", "text": "jumlah, tipe dan kualitas"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Peramalan tenaga kerja (workforce forecasting) berfokus pada perkiraan kebutuhan masa depan yang meliputi: Jumlah (berapa banyak), Tipe (jenis pekerjaan), dan Keahlian (keterampilan yang dibutuhkan)."
+  },
+  {
+    "id": 9,
+    "question": "Menentukan apa yang harus dikerjakan dan siapa yang mengerjakan merupakan proses manajemen, yaitu....",
+    "options": [
+      {"key": "A", "text": "perencanaan"},
+      {"key": "B", "text": "pengarahan"},
+      {"key": "C", "text": "pengendalian"},
+      {"key": "D", "text": "pengorganisasian"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Pengorganisasian (organizing) adalah proses manajemen yang menentukan apa yang harus dikerjakan, siapa yang mengerjakan, dan bagaimana tugas dibagi serta dikoordinasikan."
+  },
+  {
+    "id": 10,
+    "question": "Desain organisasi yang ideal adalah desain yang memberi kebebasan dalam pengambilan keputusan dan pelaksanaan kerja, serta situasi kerja yang lebih informal. Hal tersebut merupakan pandangan....",
+    "options": [
+      {"key": "A", "text": "Max Weber"},
+      {"key": "B", "text": "Tom Burns"},
+      {"key": "C", "text": "Chris Argyr s"},
+      {"key": "D", "text": "Joan Woodward"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Chris Argyris menekankan bahwa desain organisasi harus memberikan kebebasan, otonomi, dan suasana informal agar karyawan dapat berkembang secara psikologis dan memiliki kepuasan kerja tinggi."
+  },
+  {
+    "id": 11,
+    "question": "Keputusan yang dibuat oleh manajer puncak dalam perencanaan strategis adalah keputusan tingkat...",
+    "options": [
+      {"key": "A", "text": "bisnis"},
+      {"key": "B", "text": "fungsional"},
+      {"key": "C", "text": "korporasi"},
+      {"key": "D", "text": "divisi"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Keputusan manajer puncak dalam perencanaan strategis berada pada tingkat korporasi (corporate level), mencakup arah dan tujuan besar seluruh organisasi (misalnya: ekspansi, merger, diversifikasi)."
+  },
+  {
+    "id": 12,
+    "question": "Asih bekerja di sebuah perusahaan dimana karyawan bisa bekerja 4 hari kerja dalam sepekan dengan 10 jam kerja per hari atau 5 hari kerja dalam sepekan dengan 8 jam kerja per hari. Pengaturan jam kerja perusahaan seperti ini dikenal dengan dinamika....",
+    "options": [
+      {"key": "A", "text": "flextime"},
+      {"key": "B", "text": "telecommuting"},
+      {"key": "C", "text": "job sharing"},
+      {"key": "D", "text": "work compaction"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Work compaction (compressed work schedule) adalah sistem kerja di mana total jam kerja tetap sama, tetapi dibagi dalam hari kerja yang lebih sedikit (misalnya 4 hari x 10 jam)."
+  },
+  {
+    "id": 13,
+    "question": "Perbedaan dari tipe kelompok komite dan gugus tugas adalah...",
+    "options": [
+      {"key": "A", "text": "jangka waktu dari komite jangka pendek sedangkan gugus tugas jangka panjang"},
+      {"key": "B", "text": "stabilitas anggota komite stabil sedangkan gugus tugas berubah-ubah"},
+      {"key": "C", "text": "identifikasi tugas dari komite aktif sedangkan gugus tugas pasif"},
+      {"key": "D", "text": "tipe kelompok komite formal sedangkan gugus tugas informal"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Komite bersifat permanen dan memiliki anggota yang stabil, sementara Gugus Tugas (task force) bersifat sementara (ad hoc) dan anggotanya berubah-ubah atau dibubarkan setelah tugas selesai."
+  },
+  {
+    "id": 14,
+    "question": "Sardi seorang supervisor produksi sedang terlibat konflik dengan Anton operator produksi terkait perhitungan upah lembur. Untuk mengatasi konflik ini Asep manajer produksi meminta mereka untuk bersama-sama kembali ke peraturan yang berlaku terkait pengupahan. Jenis pemecahan konflik yang dilakukan Asep adalah....",
+    "options": [
+      {"key": "A", "text": "dominasi"},
+      {"key": "B", "text": "kompromi"},
+      {"key": "C", "text": "integratif"},
+      {"key": "D", "text": "konfrontasi"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Konfrontasi adalah penyelesaian konflik dengan menghadapkan pihak-pihak yang berkonflik pada masalah sebenarnya, mencari solusi berdasarkan fakta atau aturan yang berlaku (dalam hal ini peraturan pengupahan)."
+  },
+  {
+    "id": 15,
+    "question": "Bentuk laporan dari audit akuntansi manajemen ditentukan oleh....",
+    "options": [
+      {"key": "A", "text": "standar akuntansi manajemen"},
+      {"key": "B", "text": "keputusan yang akan diambil"},
+      {"key": "C", "text": "direksi"},
+      {"key": "D", "text": "auditor"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Audit akuntansi manajemen bertujuan memberikan informasi yang relevan bagi manajemen untuk pengambilan keputusan, sehingga bentuk dan isi laporannya disesuaikan dengan kebutuhan keputusan tersebut."
+  },
+  {
+    "id": 16,
+    "question": "Saran dari konsultan manajemen untuk peningkatan kinerja perusahaan akan diikuti oleh pemilik perusahaan merupakan sumber kekuasaan....",
+    "options": [
+      {"key": "A", "text": "expert"},
+      {"key": "B", "text": "reward"},
+      {"key": "C", "text": "referent"},
+      {"key": "D", "text": "coercive"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Kekuasaan expert (keahlian) muncul karena seseorang memiliki pengetahuan, keterampilan, atau keahlian khusus yang diakui dan dipercaya oleh orang lain (konsultan manajemen)."
+  },
+  {
+    "id": 17,
+    "question": "Selisih antara potensi pasar dan pangsa pasar yang sudah terlayani adalah...",
+    "options": [
+      {"key": "A", "text": "kesempatan pasar"},
+      {"key": "B", "text": "peluang pasar"},
+      {"key": "C", "text": "target pasar"},
+      {"key": "D", "text": "proyeksi pasar"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Peluang pasar (market opportunity) adalah selisih antara potensi pasar keseluruhan dengan pangsa pasar yang sudah terlayani, yang menunjukkan bagian pasar yang belum digarap."
+  },
+  {
+    "id": 18,
+    "question": "Salah satu manfaat dari melakukan delegasi wewenang adalah....",
+    "options": [
+      {"key": "A", "text": "peningkatan penjualan"},
+      {"key": "B", "text": "keputusan lebih cepat dan berkualitas"},
+      {"key": "C", "text": "kepuasan pelangggan"},
+      {"key": "D", "text": "kemajuan organisasi"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Manfaat utama delegasi wewenang adalah mempercepat proses pengambilan keputusan karena bisa dilakukan di tingkat yang lebih rendah dan meningkatkan kualitas keputusan karena diambil oleh pihak yang paling dekat dengan masalah."
+  },
+  {
+    "id": 19,
+    "question": "Salah satu perbedaaan antara Gross Domestic Product (GDP) dan Gross National Product (GNP) adalah...",
+    "options": [
+      {"key": "A", "text": "GDP berdasarkan wilayah sedangkan GNP kewarganegaraan"},
+      {"key": "B", "text": "GDP berdasarkan jasa sedangkan GNP barang"},
+      {"key": "C", "text": "GDP berdasarkan barang sedangkan GNP jasa"},
+      {"key": "D", "text": "GDP nilainya lebih besar dari GNP"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "GDP dihitung berdasarkan wilayah produksi (domestik), sedangkan GNP dihitung berdasarkan kewarganegaraan pelaku ekonomi (nasional)."
+  },
+  {
+    "id": 20,
+    "question": "Berikut ini yang termasuk rencana sekali pakai adalah....",
+    "options": [
+      {"key": "A", "text": "program"},
+      {"key": "B", "text": "kebijakan"},
+      {"key": "C", "text": "prosedur"},
+      {"key": "D", "text": "aturan"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Rencana sekali pakai (single-use plan) adalah rencana yang dibuat untuk tujuan atau kegiatan tertentu dan tidak digunakan kembali. Program termasuk rencana sekali pakai."
+  },
+  {
+    "id": 21,
+    "question": "Individu cenderung menilai potensi keuntungan lebih tinggi daripada potensi kerugian dalam pengambilan keputusan, hal ini dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "anchoring"},
+      {"key": "B", "text": "prospect theory"},
+      {"key": "C", "text": "stereotype"},
+      {"key": "D", "text": "availability"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Prospect theory menjelaskan kecenderungan individu untuk menilai potensi keuntungan lebih tinggi daripada potensi kerugian, meskipun nilainya seimbang, yang menunjukkan perilaku tidak selalu rasional dalam pengambilan keputusan."
+  },
+  {
+    "id": 22,
+    "question": "Memastikan bahwa pelaksanaan keputusan yang diambil mengenai sasaran atau sesuai dengan tujuan yang ingin dicapai, dilakukan pada langkah....",
+    "options": [
+      {"key": "A", "text": "evaluasi alternatif"},
+      {"key": "B", "text": "meneliti situasi"},
+      {"key": "C", "text": "implementasi"},
+      {"key": "D", "text": "tindak lanjut"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Tindak lanjut (follow-up) dilakukan setelah implementasi keputusan untuk memastikan pelaksanaan berjalan sesuai dengan sasaran dan tujuan, serta melakukan perbaikan jika terjadi penyimpangan."
+  },
+  {
+    "id": 23,
+    "question": "Perusahaan XYZ asal India akan membuka pabrik di Vietnam tahun ini, untuk posisi manajer mengambil tenaga kerja dari India sedangkan pengawas dan operator mengambil dari tenaga kerja lokal. Hambatan komunikasi efektif yang sering terjadi pada kasus tersebut adalah perbedaan...",
+    "options": [
+      {"key": "A", "text": "persepsi"},
+      {"key": "B", "text": "bahasa"},
+      {"key": "C", "text": "pola pikir"},
+      {"key": "D", "text": "lokasi"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Dalam konteks operasional pabrik di negara yang berbeda, perbedaan bahasa antara manajer (India) dan staf lokal (Vietnam) adalah hambatan komunikasi yang paling mendasar dan sering terjadi."
+  },
+  {
+    "id": 24,
+    "question": "Bentuk usaha persekutuan yang didirikan oleh dua orang atau lebih untuk mencapai keuntungan bersama dikenal dengan istilah...",
+    "options": [
+      {"key": "A", "text": "perseroan"},
+      {"key": "B", "text": "firma"},
+      {"key": "C", "text": "koperasi"},
+      {"key": "D", "text": "perusahaan umum"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Firma adalah bentuk usaha persekutuan yang didirikan oleh dua orang atau lebih dengan tujuan mencari keuntungan bersama, di mana setiap sekutu bertanggung jawab penuh atas kewajiban perusahaan."
+  },
+  {
+    "id": 25,
+    "question": "Kekuatan yang menjadi pendorong perubahan dalam sebuah perusahaan, dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "norma perusahaan"},
+      {"key": "B", "text": "tekanan pengawas"},
+      {"key": "C", "text": "kepuasan karyawan"},
+      {"key": "D", "text": "kompetensi yang dimiliki"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Kompetensi yang dimiliki karyawan atau organisasi (pengetahuan, keterampilan, dan kemampuan) adalah kekuatan pendorong utama yang memungkinkan perusahaan beradaptasi, berinovasi, dan siap menghadapi perubahan."
+  },
+  {
+    "id": 26,
+    "question": "Salah satu ciri individu kreatif adalah kemampuan menggabungkan beberapa hal menjadi satu kesatuan yang utuh. Kemampuan tersebut dikenal dengan kemampuan...",
+    "options": [
+      {"key": "A", "text": "analitis"},
+      {"key": "B", "text": "logis"},
+      {"key": "C", "text": "matematis"},
+      {"key": "D", "text": "sintetis"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Kemampuan sintetis adalah kemampuan untuk menggabungkan ide atau konsep berbeda menjadi satu kesatuan yang baru dan utuh. Analitis adalah memecah masalah menjadi bagian-bagian."
+  },
+  {
+    "id": 27,
+    "question": "Metode manajemen persediaan yang bertujuan untuk mengurangi biaya penyimpanan dengan cara persediaan di buat nol dikenal dengan metode....",
+    "options": [
+      {"key": "A", "text": "economic order quantity"},
+      {"key": "B", "text": "material requirement planning"},
+      {"key": "C", "text": "manufacturing resources planning"},
+      {"key": "D", "text": "just in time"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Metode Just In Time (JIT) bertujuan meniadakan biaya penyimpanan dengan cara barang/bahan datang tepat saat dibutuhkan, sehingga persediaan dibuat nol atau minimal."
+  },
+  {
+    "id": 28,
+    "question": "Setiap akhir tahun lembaga pelatihan UVW menyebarkan angket ke perusahaan, berupa survei kepuasan pelanggan dan menanyakan modul pelatihan apa yang dibutuhkan di tahun depan. Aktivitas yang dilakukan lembaga pelatihan tersebut adalah menggali inovasi dari sumber....",
+    "options": [
+      {"key": "A", "text": "pesaing"},
+      {"key": "B", "text": "lingkungan"},
+      {"key": "C", "text": "konsumen"},
+      {"key": "D", "text": "pemasok"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Survei yang fokus pada kepuasan dan kebutuhan pelatihan di masa depan kepada perusahaan sebagai pelanggan adalah bentuk penggalian inovasi dari konsumen."
+  },
+  {
+    "id": 29,
+    "question": "Dampak positif penerapan Corporate Social Responsibility (CSR) bagi perusahaan adalah ....",
+    "options": [
+      {"key": "A", "text": "meningkatkan produktivitas"},
+      {"key": "B", "text": "mencegah konflik tujuan ekonomi dan tujuan sosial"},
+      {"key": "C", "text": "meningkatkan profit jangka pendek"},
+      {"key": "D", "text": "meningkatkan reputasi organisasi"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Dampak positif utama dan paling nyata dari penerapan CSR adalah pembangunan citra positif, kepercayaan publik, dan peningkatan reputasi organisasi."
+  },
+  {
+    "id": 30,
+    "question": "Laporan keuangan yang berisi informasi tentang pendapatan dan biaya yang dikeluarkan perusahaan untuk menjalankan operasionalnya, merupakan laporan...",
+    "options": [
+      {"key": "A", "text": "aliran cash"},
+      {"key": "B", "text": "neraca"},
+      {"key": "C", "text": "audit"},
+      {"key": "D", "text": "laporan rugi laba"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Laporan rugi laba (income statement) menunjukkan pendapatan dan biaya selama periode tertentu untuk menentukan laba atau rugi operasional perusahaan."
+  },
+  {
+    "id": 31,
+    "question": "Perusahaan yang melakukan transformasi digital dengan membuat model bisnis baru untuk melayani konsumen dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "lean champion"},
+      {"key": "B", "text": "all rounders"},
+      {"key": "C", "text": "inventor"},
+      {"key": "D", "text": "disruptor"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Disruptor adalah perusahaan yang menggunakan teknologi digital untuk menciptakan model bisnis baru, sehingga mampu mengubah (mendisrupsi) cara industri melayani konsumen."
+  },
+  {
+    "id": 32,
+    "question": "Sistem kemitraan dimana UMKM memproduksi sebagian dari komponen perusahaan besar adalah...",
+    "options": [
+      {"key": "A", "text": "inti-plasma"},
+      {"key": "B", "text": "subcontract"},
+      {"key": "C", "text": "franchise"},
+      {"key": "D", "text": "outsourcing"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Subcontract (subkontrak) adalah sistem kemitraan di mana UMKM memproduksi sebagian komponen atau bagian dari produk yang kemudian akan digunakan atau dirakit oleh perusahaan besar."
+  },
+  {
+    "id": 33,
+    "question": "Pola jaringan komunikasi yang paling desentralisasi adalah....",
+    "options": [
+      {"key": "A", "text": "bintang"},
+      {"key": "B", "text": "Y"},
+      {"key": "C", "text": "Lingkaran"},
+      {"key": "D", "text": "rantai"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Pola jaringan komunikasi lingkaran (circle network) bersifat paling desentralisasi, karena setiap anggota memiliki kesempatan yang sama untuk berkomunikasi langsung dengan dua orang di sekitarnya."
+  },
+  {
+    "id": 34,
+    "question": "Langkah-langkah yang dapat dilakukan kepemimpinan strategik antara lain...",
+    "options": [
+      {"key": "A", "text": "evaluasi kondisi saat ini, merumuskan strategi, merumuskan visi"},
+      {"key": "B", "text": "merumuskan visi, menganalisis tujuan, menetapkan strategi"},
+      {"key": "C", "text": "merumuskan visi, melakukan analisis SWOT, menetapkan strategi"},
+      {"key": "D", "text": "evaluasi kondisi saat ini, melakukan analisis SWOT, merumuskan visi"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Langkah-langkah kepemimpinan strategik secara umum adalah: merumuskan visi, menganalisis tujuan dan strategi saat ini (termasuk analisis lingkungan), menetapkan strategi, dan melaksanakan serta mengevaluasinya."
+  },
+  {
+    "id": 35,
+    "question": "Peramalan tenaga kerja yang digunakan untuk memprediksi kapan waktu yang tepat karyawan akan pensiun, di-PHK, atau berhenti secara sukarela, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "peta penempatan"},
+      {"key": "B", "text": "analisis rasio"},
+      {"key": "C", "text": "matriks transisi"},
+      {"key": "D", "text": "analisis tren"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Matriks Transisi (Transition Matrix) atau matriks Markov adalah alat peramalan yang digunakan untuk memprediksi probabilitas perpindahan karyawan dalam organisasi (pensiun, PHK, berhenti, promosi) dari satu periode ke periode berikutnya."
+  },
+  {
+    "id": 36,
+    "question": "Perusahaan yang menghasilkan produk yang membutuhkan keterampilan teknis yang tinggi, maka struktur organisasinya cenderung menggunakan....",
+    "options": [
+      {"key": "A", "text": "birokrasi"},
+      {"key": "B", "text": "organisasi mesin"},
+      {"key": "C", "text": "organisasi profesional"},
+      {"key": "D", "text": "organisasi divisional"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Organisasi Profesional (Professional Bureaucracy) cocok untuk perusahaan yang membutuhkan keahlian teknis tinggi (seperti rumah sakit atau kantor akuntan), karena menekankan pada standar keahlian dan otonomi individu yang memiliki kualifikasi tinggi."
+  },
+  {
+    "id": 37,
+    "question": "Sistem pengendalian yang diterapkan dengan menghitung laba atau rugi yang didapatkan perusahaan adalah pengendalian....",
+    "options": [
+      {"key": "A", "text": "pendapatan"},
+      {"key": "B", "text": "strategi"},
+      {"key": "C", "text": "operasional"},
+      {"key": "D", "text": "keuangan"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Menghitung laba atau rugi adalah fungsi utama dari pengendalian keuangan (financial control), yang dilakukan melalui analisis laporan laba rugi, neraca, dan rasio keuangan."
+  },
+  {
+    "id": 38,
+    "question": "Dalam konteks etika, keputusan yang harus dibuat berdasarkan prinsip bahwa tidak ada tindakan yang dapat dibenarkan kecuali memberikan manfaat bagi semua orang yang terpengaruh, dikenal dengan pendekatan....",
+    "options": [
+      {"key": "A", "text": "utilitarianisme"},
+      {"key": "B", "text": "teori hak"},
+      {"key": "C", "text": "teori keadilan"},
+      {"key": "D", "text": "teori moral"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Pendekatan Utilitarianisme (Utilitarianism) berfokus pada hasil atau konsekuensi. Keputusan etis adalah yang memberikan kebaikan terbesar bagi jumlah orang terbanyak (manfaat bagi semua orang yang terpengaruh)."
+  },
+  {
+    "id": 39,
+    "question": "Perbedaan utama dari manajer dan pemimpin adalah....",
+    "options": [
+      {"key": "A", "text": "manajer fokus pada arah jangka pendek, pemimpin jangka panjang"},
+      {"key": "B", "text": "manajer memiliki pengikut, pemimpin memiliki bawahan"},
+      {"key": "C", "text": "manajer membangun hubungan, pemimpin membangun sistem"},
+      {"key": "D", "text": "manajer fokus pada apa yang harus dilakukan, pemimpin fokus pada bagaimana melakukannya"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Perbedaan klasik: Manajer fokus pada efisiensi jangka pendek (melakukan hal yang benar/doing things right), sementara Pemimpin fokus pada arah/visi jangka panjang (melakukan hal yang benar/doing the right things)."
+  },
+  {
+    "id": 40,
+    "question": "Menetapkan suatu tugas yang harus dilakukan oleh unit tertentu pada waktu yang tepat, dengan cara yang optimal, dikenal dengan proses....",
+    "options": [
+      {"key": "A", "text": "staffing"},
+      {"key": "B", "text": "controlling"},
+      {"key": "C", "text": "delegasi"},
+      {"key": "D", "text": "scheduling"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Scheduling (penjadwalan) adalah proses menetapkan tugas-tugas spesifik (apa), menentukan unit atau individu yang bertanggung jawab (siapa), dan menetapkan kapan harus diselesaikan (kapan) dengan cara yang paling efisien."
+  },
+  {
+    "id": 41,
+    "question": "Menghitung nilai total barang dan jasa yang diproduksi oleh warga negara, baik di dalam maupun di luar negeri, merupakan perhitungan dari....",
+    "options": [
+      {"key": "A", "text": "GDP"},
+      {"key": "B", "text": "GNP"},
+      {"key": "C", "text": "NNP"},
+      {"key": "D", "text": "NNI"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "GNP (Gross National Product) dihitung berdasarkan kewarganegaraan pelaku ekonomi, baik di dalam maupun di luar negeri. Sedangkan GDP (Gross Domestic Product) berdasarkan wilayah."
+  },
+  {
+    "id": 42,
+    "question": "Perusahaan yang beroperasi di lebih dari satu negara, yaitu....",
+    "options": [
+      {"key": "A", "text": "multinasional"},
+      {"key": "B", "text": "lokal"},
+      {"key": "C", "text": "nasional"},
+      {"key": "D", "text": "regional"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Perusahaan Multinasional (Multinational Corporations/MNC) adalah perusahaan yang beroperasi dan mengendalikan fasilitas produksi/jasa di lebih dari satu negara, di luar negara asalnya."
+  },
+  {
+    "id": 43,
+    "question": "Dalam manajemen operasional, perencanaan kapasitas berkaitan dengan...",
+    "options": [
+      {"key": "A", "text": "berapa banyak barang yang diproduksi"},
+      {"key": "B", "text": "kapan harus memproduksi"},
+      {"key": "C", "text": "bagaimana memproduksi"},
+      {"key": "D", "text": "siapa yang memproduksi"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Perencanaan Kapasitas (Capacity Planning) adalah proses menentukan seberapa banyak (volume) produk atau jasa yang dapat dihasilkan oleh suatu fasilitas dalam periode waktu tertentu. Fokusnya adalah 'berapa banyak barang yang diproduksi'."
+  },
+  {
+    "id": 44,
+    "question": "Ketika PT. XYZ memutuskan untuk memperluas bisnis ke luar negeri karena potensi pasar yang besar. Jenis keputusan yang diambil adalah...",
+    "options": [
+      {"key": "A", "text": "non-rutin dan non-terprogram"},
+      {"key": "B", "text": "rutin dan non-terprogram"},
+      {"key": "C", "text": "non-rutin dan terprogram"},
+      {"key": "D", "text": "rutin dan terprogram"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Keputusan memperluas bisnis ke luar negeri adalah keputusan non-rutin (tidak sering terjadi) dan non-terprogram (membutuhkan solusi baru, bukan prosedur standar), karena memiliki dampak strategis dan risiko besar."
+  },
+  {
+    "id": 45,
+    "question": "Langkah pertama dalam proses perencanaan adalah....",
+    "options": [
+      {"key": "A", "text": "penetapan sasaran atau tujuan"},
+      {"key": "B", "text": "pengembangan rencana"},
+      {"key": "C", "text": "pengembangan premis"},
+      {"key": "D", "text": "pelaksanaan rencana"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Langkah pertama dalam proses perencanaan adalah menetapkan sasaran atau tujuan (goals setting) yang jelas, spesifik, dan terukur. Semua langkah perencanaan lainnya akan mengacu pada sasaran ini."
+  },
+  {
+    "id": 46,
+    "question": "Asumsi-asumsi yang harus dibuat tentang kondisi lingkungan di masa depan yang akan memengaruhi jalannya rencana, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "premis perencanaan"},
+      {"key": "B", "text": "pengembangan rencana"},
+      {"key": "C", "text": "penetapan sasaran"},
+      {"key": "D", "text": "evaluasi rencana"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Premis Perencanaan (Planning Premises) adalah asumsi-asumsi atau ramalan tentang kondisi lingkungan eksternal dan internal di masa depan (misalnya: tingkat inflasi, suku bunga, teknologi) yang menjadi dasar dalam menyusun rencana."
+  },
+  {
+    "id": 47,
+    "question": "Peramalan yang didasarkan pada keputusan manajer puncak dan pengalaman para ahli, dikenal dengan peramalan...",
+    "options": [
+      {"key": "A", "text": "ekonomi"},
+      {"key": "B", "text": "teknologi"},
+      {"key": "C", "text": "kuantitatif"},
+      {"key": "D", "text": "kualitatif"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Peramalan Kualitatif (Qualitative Forecasting) didasarkan pada penilaian subjektif, pengalaman, intuisi, dan pendapat ahli atau manajer puncak, bukan data historis atau model matematis."
+  },
+  {
+    "id": 48,
+    "question": "Perusahaan yang mengambil keputusan menggunakan data historis yang valid dan model matematika, dikenal dengan peramalan...",
+    "options": [
+      {"key": "A", "text": "ekonomi"},
+      {"key": "B", "text": "teknologi"},
+      {"key": "C", "text": "kuantitatif"},
+      {"key": "D", "text": "kualitatif"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Peramalan Kuantitatif (Quantitative Forecasting) didasarkan pada data historis (angka/statistik) dan menggunakan model-model matematis, seperti analisis regresi atau deret waktu, untuk memprediksi masa depan."
+  },
+  {
+    "id": 49,
+    "question": "Pemimpin yang mendorong pengikut untuk mengabaikan kepentingan pribadi demi kebaikan organisasi, dikenal dengan kepemimpinan....",
+    "options": [
+      {"key": "A", "text": "transaksional"},
+      {"key": "B", "text": "transformasional"},
+      {"key": "C", "text": "romantis"},
+      {"key": "D", "text": "karismatik"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Kepemimpinan Transformasional (Transformational Leadership) berfokus pada motivasi, inspirasi, dan peningkatan moral pengikut. Pemimpin transformasional mendorong pengikut untuk mencapai tujuan melebihi yang diperkirakan dan mengutamakan kepentingan organisasi."
+  },
+  {
+    "id": 50,
+    "question": "Membuat kelompok formal seperti Gugus Tugas (Task Force) merupakan salah satu cara untuk meningkatkan efektivitas organisasi dari sisi....",
+    "options": [
+      {"key": "A", "text": "struktur"},
+      {"key": "B", "text": "teknologi"},
+      {"key": "C", "text": "tugas"},
+      {"key": "D", "text": "orang"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Pembentukan kelompok formal seperti Gugus Tugas adalah perubahan pada Struktur organisasi, karena melibatkan penambahan atau perubahan unit, peran, dan hubungan kewenangan dalam organisasi."
+  },
+  {
+    "id": 51,
+    "question": "Perusahaan yang hanya melakukan aktivitas sosial sesuai dengan hukum yang berlaku di Indonesia, tanpa melakukan inisiatif sosial tambahan, dikenal dengan pendekatan...",
+    "options": [
+      {"key": "A", "text": "kewajiban sosial"},
+      {"key": "B", "text": "respons sosial"},
+      {"key": "C", "text": "akuntabilitas sosial"},
+      {"key": "D", "text": "kepekaan sosial"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Kewajiban Sosial (Social Obligation) adalah pendekatan etika terendah, di mana perusahaan hanya memenuhi tanggung jawab sosial yang diwajibkan oleh hukum (misalnya membayar pajak, mematuhi UU lingkungan)."
+  },
+  {
+    "id": 52,
+    "question": "Menetapkan target penjualan untuk tiap-tiap divisi pemasaran agar dapat dievaluasi di akhir tahun merupakan contoh dari pengendalian....",
+    "options": [
+      {"key": "A", "text": "strategi"},
+      {"key": "B", "text": "operasional"},
+      {"key": "C", "text": "manajemen"},
+      {"key": "D", "text": "keuangan"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Menetapkan target penjualan harian/bulanan dan mengevaluasi pencapaiannya adalah bagian dari pengendalian operasional, karena berfokus pada proses dan kinerja jangka pendek yang berhubungan langsung dengan pelaksanaan tugas."
+  },
+  {
+    "id": 53,
+    "question": "Perusahaan yang melakukan penetapan harga dengan tujuan untuk memaksimumkan laba, dikenal dengan penetapan harga....",
+    "options": [
+      {"key": "A", "text": "berorientasi pelanggan"},
+      {"key": "B", "text": "berorientasi biaya"},
+      {"key": "C", "text": "berorientasi laba"},
+      {"key": "D", "text": "berorientasi pesaing"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Penetapan harga berorientasi laba (profit-oriented pricing) adalah strategi yang bertujuan untuk mencapai target laba tertentu, seringkali dengan menghitung titik impas (BEP) dan margin keuntungan yang diinginkan."
+  },
+  {
+    "id": 54,
+    "question": "Perusahaan yang membeli saham perusahaan lain yang sejenis, dikenal dengan istilah...",
+    "options": [
+      {"key": "A", "text": "diversifikasi"},
+      {"key": "B", "text": "merger"},
+      {"key": "C", "text": "akuisisi"},
+      {"key": "D", "text": "ventura bersama"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Akuisisi (Acquisition) adalah proses di mana satu perusahaan membeli sebagian besar atau seluruh saham perusahaan lain (target) untuk mendapatkan kontrol."
+  },
+  {
+    "id": 55,
+    "question": "Analisis lingkungan internal yang mengacu pada kelemahan yang dimiliki perusahaan, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "opportunity"},
+      {"key": "B", "text": "threat"},
+      {"key": "C", "text": "weakness"},
+      {"key": "D", "text": "strength"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Dalam Analisis SWOT: Weakness (W) adalah faktor internal perusahaan yang merupakan kelemahan atau keterbatasan yang menghalangi pencapaian tujuan."
+  },
+  {
+    "id": 56,
+    "question": "Laporan keuangan yang berisi posisi aset, kewajiban dan ekuitas perusahaan pada tanggal tertentu, merupakan laporan...",
+    "options": [
+      {"key": "A", "text": "aliran cash"},
+      {"key": "B", "text": "neraca"},
+      {"key": "C", "text": "audit"},
+      {"key": "D", "text": "laporan rugi laba"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Neraca (Balance Sheet) adalah laporan keuangan yang menyajikan posisi keuangan perusahaan, yaitu aset (harta), liabilitas (kewajiban), dan ekuitas (modal) pada tanggal tertentu."
+  },
+  {
+    "id": 57,
+    "question": "Membandingkan kinerja perusahaan dengan perusahaan sejenis yang menjadi pesaing, dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "benchmarking"},
+      {"key": "B", "text": "audit internal"},
+      {"key": "C", "text": "analisis rasio"},
+      {"key": "D", "text": "evaluasi kinerja"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Benchmarking adalah proses membandingkan produk, jasa, atau praktik operasional perusahaan dengan pesaing terbaik di industri atau perusahaan terbaik di luar industri untuk mengidentifikasi area yang perlu ditingkatkan."
+  },
+  {
+    "id": 58,
+    "question": "Perusahaan yang hanya membuat keputusan berdasarkan standar yang ditetapkan oleh pemerintah dan berfokus pada tujuan ekonomi, dikenal dengan etika...",
+    "options": [
+      {"key": "A", "text": "kewajiban sosial"},
+      {"key": "B", "text": "respons sosial"},
+      {"key": "C", "text": "akuntabilitas sosial"},
+      {"key": "D", "text": "kepekaan sosial"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Kewajiban Sosial (Social Obligation) menunjukkan bahwa perusahaan hanya bertindak sesuai kewajiban hukum dan ekonomi, tanpa inisiatif sosial tambahan."
+  },
+  {
+    "id": 59,
+    "question": "Perusahaan yang mampu beradaptasi dengan teknologi baru dan mengubah model bisnisnya secara berkelanjutan dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "lean champion"},
+      {"key": "B", "text": "all rounders"},
+      {"key": "C", "text": "inventor"},
+      {"key": "D", "text": "disruptor"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "All Rounders adalah perusahaan yang sangat adaptif dan mampu bersaing secara efektif di berbagai aspek (operasional, inovasi, model bisnis) dalam menghadapi perubahan teknologi yang cepat."
+  },
+  {
+    "id": 60,
+    "question": "Bentuk kemitraan di mana UMKM memproduksi komponen untuk perusahaan besar, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "inti-plasma"},
+      {"key": "B", "text": "subcontract"},
+      {"key": "C", "text": "franchise"},
+      {"key": "D", "text": "outsourcing"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Subcontract (subkontrak) adalah bentuk kemitraan di mana perusahaan besar menyerahkan sebagian proses produksi atau komponen kepada UMKM."
+  },
+  {
+    "id": 61,
+    "question": "Kepemimpinan yang berfokus pada pencapaian visi dan misi jangka panjang organisasi dikenal dengan kepemimpinan...",
+    "options": [
+      {"key": "A", "text": "operasional"},
+      {"key": "B", "text": "kelompok"},
+      {"key": "C", "text": "strategik"},
+      {"key": "D", "text": "individu"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Kepemimpinan Strategik (Strategic Leadership) berfokus pada arah, visi, dan pencapaian tujuan jangka panjang organisasi di tengah lingkungan global yang dinamis."
+  },
+  {
+    "id": 62,
+    "question": "Perusahaan yang menggunakan iklan, promosi penjualan, dan publisitas untuk menarik minat konsumen, dikenal dengan aktivitas...",
+    "options": [
+      {"key": "A", "text": "product"},
+      {"key": "B", "text": "price"},
+      {"key": "C", "text": "place"},
+      {"key": "D", "text": "promotion"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Iklan, promosi penjualan, dan publisitas adalah bagian dari bauran pemasaran (Marketing Mix) yang disebut Promotion (Promosi)."
+  },
+  {
+    "id": 63,
+    "question": "Tahapan pengambilan keputusan yang bertujuan untuk mengumpulkan dan menganalisis informasi tentang masalah yang dihadapi, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "evaluasi alternatif"},
+      {"key": "B", "text": "meneliti situasi"},
+      {"key": "C", "text": "implementasi"},
+      {"key": "D", "text": "tindak lanjut"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Meneliti Situasi (Investigating the Situation) adalah tahap awal pengambilan keputusan di mana masalah diidentifikasi, data dikumpulkan, dan dianalisis untuk memahami akar penyebabnya."
+  },
+  {
+    "id": 64,
+    "question": "Perbedaan antara komunikasi lisan dan komunikasi tertulis adalah...",
+    "options": [
+      {"key": "A", "text": "komunikasi lisan lebih formal, komunikasi tertulis lebih informal"},
+      {"key": "B", "text": "komunikasi lisan lebih cepat, komunikasi tertulis lebih lambat"},
+      {"key": "C", "text": "komunikasi lisan lebih mahal, komunikasi tertulis lebih murah"},
+      {"key": "D", "text": "komunikasi lisan lebih mudah diarsipkan, komunikasi tertulis lebih sulit diarsipkan"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Komunikasi lisan (verbal) lebih cepat karena terjadi secara langsung, sementara komunikasi tertulis lebih lambat tetapi memiliki keunggulan berupa arsip dan bukti yang permanen."
+  },
+  {
+    "id": 65,
+    "question": "Kekuatan yang menjadi penghambat perubahan dalam sebuah perusahaan, dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "norma perusahaan"},
+      {"key": "B", "text": "tekanan pengawas"},
+      {"key": "C", "text": "kepuasan karyawan"},
+      {"key": "D", "text": "kompetensi yang dimiliki"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Norma Perusahaan (Company Norms) yang sudah mengakar (seperti kebiasaan kerja lama atau budaya resisten) sering menjadi kekuatan penghambat (restraining force) perubahan."
+  },
+  {
+    "id": 66,
+    "question": "Keputusan manajer di tingkat fungsional (seperti manajer pemasaran atau manajer SDM) dalam perencanaan strategis adalah keputusan tingkat...",
+    "options": [
+      {"key": "A", "text": "bisnis"},
+      {"key": "B", "text": "fungsional"},
+      {"key": "C", "text": "korporasi"},
+      {"key": "D", "text": "divisi"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Keputusan fungsional berfokus pada strategi di bidang operasional tertentu (pemasaran, keuangan, SDM, produksi) untuk mendukung strategi bisnis dan korporasi."
+  },
+  {
+    "id": 67,
+    "question": "Peramalan tenaga kerja yang digunakan untuk memprediksi seberapa besar kebutuhan karyawan di masa depan berdasarkan tren penjualan atau produksi di masa lalu, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "peta penempatan"},
+      {"key": "B", "text": "analisis rasio"},
+      {"key": "C", "text": "matriks transisi"},
+      {"key": "D", "text": "analisis tren"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Analisis Tren (Trend Analysis) menggunakan data historis (misalnya penjualan atau tingkat produksi) dan memproyeksikannya ke masa depan untuk memperkirakan kebutuhan tenaga kerja."
+  },
+  {
+    "id": 68,
+    "question": "Analisis lingkungan eksternal yang mengacu pada ancaman yang dihadapi perusahaan, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "opportunity"},
+      {"key": "B", "text": "threat"},
+      {"key": "C", "text": "weakness"},
+      {"key": "D", "text": "strength"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Dalam Analisis SWOT: Threat (T) adalah faktor eksternal (di luar kendali perusahaan) yang dapat mengancam kinerja atau kelangsungan perusahaan (misalnya: resesi ekonomi, regulasi baru)."
+  },
+  {
+    "id": 69,
+    "question": "Bentuk laporan keuangan yang menunjukkan arus masuk dan keluar kas perusahaan, merupakan laporan...",
+    "options": [
+      {"key": "A", "text": "aliran cash"},
+      {"key": "B", "text": "neraca"},
+      {"key": "C", "text": "audit"},
+      {"key": "D", "text": "laporan rugi laba"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Laporan Aliran Kas (Cash Flow Statement) menunjukkan secara rinci semua kas yang masuk dan keluar perusahaan selama periode tertentu, diklasifikasikan menjadi aktivitas operasi, investasi, dan pendanaan."
+  },
+  {
+    "id": 70,
+    "question": "Kekuatan yang menjadi pendorong perubahan dalam sebuah perusahaan yang berfokus pada teknologi, dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "norma perusahaan"},
+      {"key": "B", "text": "tekanan pengawas"},
+      {"key": "C", "text": "kepuasan karyawan"},
+      {"key": "D", "text": "teknologi yang dimiliki"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Teknologi yang dimiliki perusahaan, seperti sistem informasi baru atau mesin modern, adalah kekuatan pendorong perubahan karena memungkinkan perusahaan bekerja lebih efisien atau menciptakan produk baru."
+  },
+  {
+    "id": 71,
+    "question": "Perusahaan yang berfokus pada efisiensi dan standarisasi proses kerja, dikenal dengan pendekatan desain kerja...",
+    "options": [
+      {"key": "A", "text": "mekanis"},
+      {"key": "B", "text": "motivasional"},
+      {"key": "C", "text": "biologi"},
+      {"key": "D", "text": "motor"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Pendekatan Mekanis (Mechanistic Approach) dalam desain kerja berfokus pada efisiensi, standarisasi tugas, dan spesialisasi yang tinggi, seringkali menghasilkan pekerjaan yang berulang dan mudah diawasi."
+  },
+  {
+    "id": 72,
+    "question": "Menetapkan target harga jual produk dengan mempertimbangkan biaya produksi dan margin keuntungan, dikenal dengan penetapan harga....",
+    "options": [
+      {"key": "A", "text": "berorientasi pelanggan"},
+      {"key": "B", "text": "berorientasi biaya"},
+      {"key": "C", "text": "berorientasi laba"},
+      {"key": "D", "text": "berorientasi pesaing"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Penetapan harga berorientasi biaya (cost-oriented pricing) adalah metode di mana harga ditentukan berdasarkan total biaya produksi ditambah dengan persentase keuntungan yang diinginkan (markup)."
+  },
+  {
+    "id": 73,
+    "question": "Perusahaan yang membuat keputusan berdasarkan prosedur standar yang sudah ditetapkan, dikenal dengan keputusan...",
+    "options": [
+      {"key": "A", "text": "non-rutin dan non-terprogram"},
+      {"key": "B", "text": "rutin dan non-terprogram"},
+      {"key": "C", "text": "non-rutin dan terprogram"},
+      {"key": "D", "text": "rutin dan terprogram"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Keputusan Rutin dan Terprogram (Routine and Programmed Decisions) adalah keputusan yang sering terjadi, berulang, dan memiliki solusi atau prosedur standar yang sudah ditetapkan oleh organisasi (misalnya: persetujuan cuti karyawan)."
+  },
+  {
+    "id": 74,
+    "question": "Peramalan yang didasarkan pada survei konsumen atau pendapat tenaga penjualan, dikenal dengan peramalan...",
+    "options": [
+      {"key": "A", "text": "ekonomi"},
+      {"key": "B", "text": "teknologi"},
+      {"key": "C", "text": "kuantitatif"},
+      {"key": "D", "text": "kualitatif"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Peramalan Kualitatif seringkali melibatkan pengumpulan informasi subjektif dari survei konsumen (misalnya intensi pembelian) atau pendapat tenaga penjualan (yang paling dekat dengan pasar)."
+  },
+  {
+    "id": 75,
+    "question": "Perusahaan yang melakukan penetapan harga berdasarkan harga pesaing terdekat, dikenal dengan penetapan harga....",
+    "options": [
+      {"key": "A", "text": "berorientasi pelanggan"},
+      {"key": "B", "text": "berorientasi biaya"},
+      {"key": "C", "text": "berorientasi laba"},
+      {"key": "D", "text": "berorientasi pesaing"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Penetapan harga berorientasi pesaing (competition-oriented pricing) adalah strategi di mana perusahaan menetapkan harga di atas, di bawah, atau sama dengan harga yang ditawarkan oleh pesaing utama."
+  },
+  {
+    "id": 76,
+    "question": "Pendekatan kepemimpinan yang fokus pada pertukaran (imbalan jika berhasil, sanksi jika gagal) antara pemimpin dan pengikut, dikenal dengan kepemimpinan....",
+    "options": [
+      {"key": "A", "text": "transaksional"},
+      {"key": "B", "text": "transformasional"},
+      {"key": "C", "text": "romantis"},
+      {"key": "D", "text": "karismatik"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Kepemimpinan Transaksional (Transactional Leadership) adalah pendekatan di mana pemimpin dan pengikut terlibat dalam pertukaran (transaksi) kepentingan: pengikut memberi kinerja, dan pemimpin memberi imbalan atau menghindari sanksi."
+  },
+  {
+    "id": 77,
+    "question": "Langkah-langkah dari proses perencanaan strategis secara urut adalah...",
+    "options": [
+      {"key": "A", "text": "perumusan visi dan misi, analisis lingkungan, formulasi strategi, implementasi, evaluasi"},
+      {"key": "B", "text": "analisis lingkungan, perumusan visi dan misi, formulasi strategi, implementasi, evaluasi"},
+      {"key": "C", "text": "formulasi strategi, implementasi, evaluasi, perumusan visi dan misi, analisis lingkungan"},
+      {"key": "D", "text": "evaluasi, perumusan visi dan misi, analisis lingkungan, formulasi strategi, implementasi"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Proses perencanaan strategis dimulai dengan: 1. Perumusan Visi dan Misi. 2. Analisis Lingkungan (Internal/Eksternal). 3. Formulasi Strategi. 4. Implementasi Strategi. 5. Evaluasi dan Pengendalian."
+  },
+  {
+    "id": 78,
+    "question": "Peramalan tenaga kerja yang digunakan untuk memprediksi seberapa besar kebutuhan karyawan di masa depan dengan menggunakan analisis regresi, dikenal dengan peramalan...",
+    "options": [
+      {"key": "A", "text": "peta penempatan"},
+      {"key": "B", "text": "analisis rasio"},
+      {"key": "C", "text": "matriks transisi"},
+      {"key": "D", "text": "analisis statistik"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Analisis Statistik, seperti analisis regresi, adalah metode kuantitatif yang menggunakan hubungan matematis antara variabel (misalnya: penjualan) dan kebutuhan tenaga kerja untuk memproyeksikan kebutuhan masa depan."
+  },
+  {
+    "id": 79,
+    "question": "Komunikasi yang dilakukan secara tidak langsung melalui tulisan, dikenal dengan komunikasi...",
+    "options": [
+      {"key": "A", "text": "lisan"},
+      {"key": "B", "text": "tertulis"},
+      {"key": "C", "text": "non-verbal"},
+      {"key": "D", "text": "verbal"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Komunikasi Tertulis (Written Communication) adalah penyampaian pesan melalui media tulisan, seperti surat, email, memo, atau laporan."
+  },
+  {
+    "id": 80,
+    "question": "Perusahaan yang melakukan penetapan harga berdasarkan nilai yang dirasakan oleh pelanggan, dikenal dengan penetapan harga....",
+    "options": [
+      {"key": "A", "text": "berorientasi pelanggan"},
+      {"key": "B", "text": "berorientasi biaya"},
+      {"key": "C", "text": "berorientasi laba"},
+      {"key": "D", "text": "berorientasi pesaing"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Penetapan harga berorientasi pelanggan (customer-oriented pricing) didasarkan pada nilai atau manfaat yang diterima pelanggan (perceived value), di mana harga ditetapkan tinggi jika nilai dirasakan tinggi."
+  },
+  {
+    "id": 81,
+    "question": "Bentuk komunikasi yang paling efektif untuk menyampaikan pesan yang kompleks atau membutuhkan bukti formal adalah komunikasi...",
+    "options": [
+      {"key": "A", "text": "lisan"},
+      {"key": "B", "text": "tertulis"},
+      {"key": "C", "text": "non-verbal"},
+      {"key": "D", "text": "verbal"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Komunikasi Tertulis efektif untuk pesan yang kompleks karena memungkinkan penerima untuk meninjau ulang informasi. Ia juga berfungsi sebagai bukti formal atau arsip."
+  },
+  {
+    "id": 82,
+    "question": "Perusahaan yang memiliki kewenangan penuh untuk mengendalikan fasilitas produksi/jasa di lebih dari satu negara, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "multinasional"},
+      {"key": "B", "text": "lokal"},
+      {"key": "C", "text": "nasional"},
+      {"key": "D", "text": "regional"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Perusahaan Multinasional (MNC) memiliki kendali strategis dan operasional yang substansial atas anak perusahaan di berbagai negara."
+  },
+  {
+    "id": 83,
+    "question": "Keputusan yang diambil oleh manajer menengah dalam perencanaan strategis (misalnya: strategi pemasaran untuk produk tertentu) adalah keputusan tingkat...",
+    "options": [
+      {"key": "A", "text": "bisnis"},
+      {"key": "B", "text": "fungsional"},
+      {"key": "C", "text": "korporasi"},
+      {"key": "D", "text": "divisi"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Keputusan Bisnis (Business Level) berfokus pada bagaimana satu unit bisnis bersaing secara efektif di pasar tertentu, biasanya dibuat oleh manajer umum unit bisnis."
+  },
+  {
+    "id": 84,
+    "question": "Perusahaan yang menghadapi ancaman dari pesaing baru, risiko perubahan teknologi, dan regulasi pemerintah, dikenal dengan lingkungan...",
+    "options": [
+      {"key": "A", "text": "stabil"},
+      {"key": "B", "text": "dinamis"},
+      {"key": "C", "text": "sederhana"},
+      {"key": "D", "text": "kompleks"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Lingkungan Dinamis (Dynamic Environment) adalah lingkungan yang ditandai dengan perubahan cepat, sering, dan tidak terduga, seperti perubahan teknologi, persaingan, dan regulasi."
+  },
+  {
+    "id": 85,
+    "question": "Peramalan tenaga kerja yang digunakan untuk memperkirakan kebutuhan karyawan berdasarkan hubungan antara rasio (misalnya: rasio penjualan/karyawan), dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "peta penempatan"},
+      {"key": "B", "text": "analisis rasio"},
+      {"key": "C", "text": "matriks transisi"},
+      {"key": "D", "text": "analisis tren"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Analisis Rasio (Ratio Analysis) menggunakan hubungan historis antara dua variabel (misalnya, jumlah produk yang dihasilkan per karyawan) untuk memprediksi kebutuhan karyawan di masa depan."
+  },
+  {
+    "id": 86,
+    "question": "Bentuk komunikasi yang paling cepat dan memungkinkan umpan balik instan adalah komunikasi...",
+    "options": [
+      {"key": "A", "text": "lisan"},
+      {"key": "B", "text": "tertulis"},
+      {"key": "C", "text": "non-verbal"},
+      {"key": "D", "text": "verbal"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Komunikasi Lisan (Oral Communication) adalah yang tercepat dan memungkinkan umpan balik (feedback) seketika antara pengirim dan penerima."
+  },
+  {
+    "id": 87,
+    "question": "Analisis lingkungan internal yang mengacu pada keunggulan yang dimiliki perusahaan, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "opportunity"},
+      {"key": "B", "text": "threat"},
+      {"key": "C", "text": "weakness"},
+      {"key": "D", "text": "strength"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Dalam Analisis SWOT: Strength (S) adalah faktor internal perusahaan yang merupakan keunggulan, sumber daya, atau kemampuan unik yang dapat dimanfaatkan untuk mencapai tujuan."
+  },
+  {
+    "id": 88,
+    "question": "Keputusan yang dibuat oleh manajer operasional dalam perencanaan strategis (misalnya: strategi penetapan harga harian) adalah keputusan tingkat...",
+    "options": [
+      {"key": "A", "text": "bisnis"},
+      {"key": "B", "text": "fungsional"},
+      {"key": "C", "text": "korporasi"},
+      {"key": "D", "text": "operasional"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Keputusan fungsional juga sering disebut keputusan operasional, karena berfokus pada pelaksanaan dan pengendalian strategi di tingkat fungsi harian (misalnya: penetapan harga harian, jadwal produksi)."
+  },
+  {
+    "id": 89,
+    "question": "Pendekatan desain kerja yang berfokus pada pengurangan kelelahan dan cedera fisik, dikenal dengan pendekatan...",
+    "options": [
+      {"key": "A", "text": "mekanis"},
+      {"key": "B", "text": "motivasional"},
+      {"key": "C", "text": "biologi"},
+      {"key": "D", "text": "motor"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Pendekatan Biologi (Biological Approach) atau Ergonomi berfokus pada penyesuaian pekerjaan dengan kemampuan fisik tubuh manusia untuk meminimalkan kelelahan, rasa sakit, dan cedera."
+  },
+  {
+    "id": 90,
+    "question": "Perusahaan yang menghadapi sedikit ancaman dari pesaing dan perubahan teknologi yang lambat, dikenal dengan lingkungan...",
+    "options": [
+      {"key": "A", "text": "stabil"},
+      {"key": "B", "text": "dinamis"},
+      {"key": "C", "text": "sederhana"},
+      {"key": "D", "text": "kompleks"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Lingkungan Stabil (Stable Environment) adalah lingkungan yang relatif tidak berubah, di mana ancaman dan peluang bersifat dapat diprediksi (misalnya: utilitas publik atau industri yang sangat diatur)."
+  },
+  {
+    "id": 91,
+    "question": "Manfaat utama dari perencanaan yang efektif adalah....",
+    "options": [
+      {"key": "A", "text": "mengurangi ketidakpastian"},
+      {"key": "B", "text": "meningkatkan koordinasi"},
+      {"key": "C", "text": "menghindari krisis"},
+      {"key": "D", "text": "semua benar"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Perencanaan yang efektif memberikan banyak manfaat, termasuk mengurangi ketidakpastian (membuat premis), meningkatkan koordinasi (membagi tugas), dan membantu menghindari krisis (antisipasi masalah)."
+  },
+  {
+    "id": 92,
+    "question": "Metode manajemen persediaan yang bertujuan menentukan jumlah pesanan optimal agar biaya total (pemesanan dan penyimpanan) minimal, dikenal dengan metode....",
+    "options": [
+      {"key": "A", "text": "economic order quantity"},
+      {"key": "B", "text": "material requirement planning"},
+      {"key": "C", "text": "manufacturing resources planning"},
+      {"key": "D", "text": "just in time"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Economic Order Quantity (EOQ) adalah model matematis yang menghitung jumlah pesanan yang paling efisien untuk meminimalkan total biaya persediaan (biaya pemesanan dan biaya penyimpanan)."
+  },
+  {
+    "id": 93,
+    "question": "Peramalan yang didasarkan pada data historis, model matematika, dan dianggap paling objektif, dikenal dengan peramalan...",
+    "options": [
+      {"key": "A", "text": "ekonomi"},
+      {"key": "B", "text": "teknologi"},
+      {"key": "C", "text": "kuantitatif"},
+      {"key": "D", "text": "kualitatif"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Peramalan Kuantitatif adalah yang paling objektif karena menggunakan data angka dan model matematis, yang meminimalkan bias subjektif."
+  },
+  {
+    "id": 94,
+    "question": "Perusahaan yang membuat keputusan untuk menangani tuntutan hukum atau krisis mendadak, dikenal dengan keputusan...",
+    "options": [
+      {"key": "A", "text": "non-rutin dan non-terprogram"},
+      {"key": "B", "text": "rutin dan non-terprogram"},
+      {"key": "C", "text": "non-rutin dan terprogram"},
+      {"key": "D", "text": "rutin dan terprogram"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Menangani krisis adalah keputusan non-rutin (tidak terduga) dan non-terprogram (membutuhkan solusi yang unik dan baru, tidak ada prosedur standar)."
+  },
+  {
+    "id": 95,
+    "question": "Perusahaan yang berfokus pada pemahaman dan pemenuhan kebutuhan pelanggan untuk mencapai keunggulan kompetitif, dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "cost leadership"},
+      {"key": "B", "text": "differentiation"},
+      {"key": "C", "text": "focus"},
+      {"key": "D", "text": "customer intimacy"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Customer Intimacy (Kemesraan Pelanggan) adalah strategi nilai di mana perusahaan berfokus untuk membangun hubungan erat dengan pelanggan dan memenuhi kebutuhan unik mereka, sehingga pelanggan merasa dihargai."
+  },
+  {
+    "id": 96,
+    "question": "Pendekatan kepemimpinan yang paling bergantung pada karisma, daya tarik pribadi, dan kepercayaan pengikut, dikenal dengan kepemimpinan....",
+    "options": [
+      {"key": "A", "text": "transaksional"},
+      {"key": "B", "text": "transformasional"},
+      {"key": "C", "text": "romantis"},
+      {"key": "D", "text": "karismatik"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Kepemimpinan Karismatik (Charismatic Leadership) sangat bergantung pada kepribadian, daya tarik, dan kemampuan pemimpin untuk menginspirasi loyalitas dan kepercayaan yang kuat dari pengikut."
+  },
+  {
+    "id": 97,
+    "question": "Perusahaan yang melakukan inisiatif sosial di luar kewajiban hukum (misalnya: program daur ulang sukarela), dikenal dengan pendekatan...",
+    "options": [
+      {"key": "A", "text": "kewajiban sosial"},
+      {"key": "B", "text": "respons sosial"},
+      {"key": "C", "text": "akuntabilitas sosial"},
+      {"key": "D", "text": "kepekaan sosial"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Respons Sosial (Social Responsiveness) adalah pendekatan di mana perusahaan melakukan inisiatif sosial dan etis sebagai respons terhadap tuntutan sosial atau nilai-nilai masyarakat."
+  },
+  {
+    "id": 98,
+    "question": "Perusahaan yang menghadapi banyak pesaing, teknologi yang kompleks, dan regulasi yang ketat, dikenal dengan lingkungan...",
+    "options": [
+      {"key": "A", "text": "stabil"},
+      {"key": "B", "text": "dinamis"},
+      {"key": "C", "text": "sederhana"},
+      {"key": "D", "text": "kompleks"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Lingkungan Kompleks (Complex Environment) adalah lingkungan yang melibatkan banyak faktor eksternal yang saling berhubungan, seperti banyak pesaing, produk yang beragam, dan teknologi yang rumit."
+  },
+  {
+    "id": 99,
+    "question": "Analisis lingkungan eksternal yang mengacu pada kesempatan yang dihadapi perusahaan, dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "opportunity"},
+      {"key": "B", "text": "threat"},
+      {"key": "C", "text": "weakness"},
+      {"key": "D", "text": "strength"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Dalam Analisis SWOT: Opportunity (O) adalah faktor eksternal (di luar kendali perusahaan) yang dapat dimanfaatkan untuk mencapai keunggulan kompetitif (misalnya: tren pasar baru, melemahnya pesaing)."
+  },
+  {
+    "id": 100,
+    "question": "Langkah-langkah dalam proses pengendalian secara urut adalah...",
+    "options": [
+      {"key": "A", "text": "mengukur kinerja, membandingkan dengan standar, mengambil tindakan korektif, menetapkan standar"},
+      {"key": "B", "text": "menetapkan standar, mengukur kinerja, membandingkan dengan standar, mengambil tindakan korektif"},
+      {"key": "C", "text": "mengambil tindakan korektif, menetapkan standar, mengukur kinerja, membandingkan dengan standar"},
+      {"key": "D", "text": "mengukur kinerja, mengambil tindakan korektif, membandingkan dengan standar, menetapkan standar"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Proses Pengendalian (Controlling Process) terdiri dari: 1. Menetapkan Standar Kinerja. 2. Mengukur Kinerja Aktual. 3. Membandingkan Kinerja dengan Standar. 4. Mengambil Tindakan Korektif."
+  },
+  {
+    "id": 101,
+    "question": "Peramalan yang didasarkan pada pendapat panel ahli atau konsultan, dikenal dengan metode...",
+    "options": [
+      {"key": "A", "text": "analisis regresi"},
+      {"key": "B", "text": "survei konsumen"},
+      {"key": "C", "text": "Delphi"},
+      {"key": "D", "text": "analisis tren"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Metode Delphi adalah teknik peramalan kualitatif di mana pendapat sekelompok ahli dikumpulkan, disintesis, dan dikembalikan kepada para ahli untuk direvisi, hingga tercapai konsensus. Prosesnya anonim."
+  },
+  {
+    "id": 102,
+    "question": "Perusahaan yang berfokus pada pengurangan biaya untuk menjual produk dengan harga termurah, dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "cost leadership"},
+      {"key": "B", "text": "differentiation"},
+      {"key": "C", "text": "focus"},
+      {"key": "D", "text": "customer intimacy"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Cost Leadership (Kepemimpinan Biaya) adalah strategi di mana perusahaan berupaya menjadi produsen biaya terendah di industrinya, sehingga dapat menawarkan harga yang paling kompetitif."
+  },
+  {
+    "id": 103,
+    "question": "Pengembangan karyawan yang dilakukan di luar pekerjaan nyata dan bersifat simulatif (seperti studi kasus atau role playing), dikenal dengan...",
+    "options": [
+      {"key": "A", "text": "coaching"},
+      {"key": "B", "text": "role playing"},
+      {"key": "C", "text": "job rotation"},
+      {"key": "D", "text": "assistance"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Role playing (Bermain Peran) adalah metode pelatihan yang dilakukan di luar pekerjaan nyata dan bersifat simulatif untuk mengembangkan keterampilan interpersonal dan pemecahan masalah."
+  },
+  {
+    "id": 104,
+    "question": "Dividen dan laba bersih per lembar saham adalah analisis laporan keuangan untuk mengukur rasio....",
+    "options": [
+      {"key": "A", "text": "pasar"},
+      {"key": "B", "text": "solvabilitas"},
+      {"key": "C", "text": "likuiditas"},
+      {"key": "D", "text": "aktivitas"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Rasio Pasar (Market Ratio) digunakan untuk menilai kinerja perusahaan dari perspektif investor atau pemegang saham. Contohnya adalah Earnings per Share (Laba Bersih per Saham) dan Dividend per Share."
+  },
+  {
+    "id": 105,
+    "question": "Perusahaan yang melakukan transformasi operasional sangat baik (operational excellence) dengan menggunakan teknologi digital dikenal dengan....",
+    "options": [
+      {"key": "A", "text": "lean champion"},
+      {"key": "B", "text": "all rounders"},
+      {"key": "C", "text": "Inventor"},
+      {"key": "D", "text": "disruptor"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Lean Champion adalah perusahaan yang berfokus pada keunggulan operasional (operational excellence) dengan memanfaatkan teknologi digital untuk meningkatkan efisiensi, kecepatan, dan kualitas proses bisnis."
+  },
+  {
+    "id": 106,
+    "question": "Supermarket menyediakan rak untuk membantu Usaha Mikro, Kecil, Menengah (UMKM) memajang, memasarkan produknya sesuai dengan standar yang ditetapkan. Sistem kemitraan seperti ini merupakan....",
+    "options": [
+      {"key": "A", "text": "perdagangan umum"},
+      {"key": "B", "text": "sub kontrak"},
+      {"key": "C", "text": "waralaba"},
+      {"key": "D", "text": "keagenan"}
+    ],
+    "correctAnswer": "D",
+    "explanation": "Kemitraan Keagenan (Agency) adalah bentuk kerja sama di mana perusahaan besar menyediakan fasilitas (seperti rak) untuk pihak lain (UMKM) guna menjual atau memasarkan produknya sesuai dengan standar dan aturan tertentu."
+  },
+  {
+    "id": 107,
+    "question": "Menyelenggarakan pelatihan active listening bagi para sales dan tim layanan pelanggan adalah salah satu cara untuk meningkatkan efektivitas komunikasi dari karakteristik....",
+    "options": [
+      {"key": "A", "text": "penerima"},
+      {"key": "B", "text": "lingkungan"},
+      {"key": "C", "text": "pengirim"},
+      {"key": "D", "text": "hubungan antara pengirim dan penerima"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Pelatihan active listening (mendengarkan secara aktif) bertujuan untuk meningkatkan kemampuan Penerima pesan — dalam hal ini sales dan tim layanan pelanggan — agar dapat fokus pada pesan pelanggan, memahami kebutuhan, dan memberikan tanggapan yang sesuai."
+  },
+  {
+    "id": 108,
+    "question": "Untuk meningkatkan daya saing perusahaan di Era globalisasi dan keberhasilan untuk mencapai visi, misi perusahaan, maka dibutuhkan kepemimpinan pada level....",
+    "options": [
+      {"key": "A", "text": "operasional"},
+      {"key": "B", "text": "kelompok"},
+      {"key": "C", "text": "strategik"},
+      {"key": "D", "text": "individu"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Kepemimpinan Strategik (Strategic Leadership) berfokus pada pencapaian visi dan misi jangka panjang organisasi, terutama dalam menghadapi dinamika globalisasi dan persaingan yang ketat."
+  },
+  {
+    "id": 109,
+    "question": "Membagi pelanggan menjadi sekelompok orang dengan karakteristik dan kebutuhan yang sama adalah proses dari....",
+    "options": [
+      {"key": "A", "text": "targetting"},
+      {"key": "B", "text": "positioning"},
+      {"key": "C", "text": "segmentation"},
+      {"key": "D", "text": "promotion"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Segmentasi Pasar (Market Segmentation) adalah proses membagi pasar menjadi kelompok-kelompok konsumen yang memiliki karakteristik, kebutuhan, atau perilaku yang sama agar dapat dilayani dengan strategi yang lebih tepat."
+  },
+  {
+    "id": 110,
+    "question": "Apit adalah seorang manajer produksi di perusahaan cat. Saat memilih sebuah keputusan ataupun tindakan, Apit cenderung langsung bertindak berdasarkan apa yang pertama kali ia pikirkan tanpa berpikir lebih lanjut apakah keputusan tersebut optimal. Hal ini menjadi salah satu penyebab penurunan produktivitas. Faktor penghalang dari pengambilan keputusan pada kasus Apit adalah....",
+    "options": [
+      {"key": "A", "text": "defensive avoidance"},
+      {"key": "B", "text": "panic"},
+      {"key": "C", "text": "relaxed change"},
+      {"key": "D", "text": "relaxed avoidance"}
+    ],
+    "correctAnswer": "C",
+    "explanation": "Relaxed Change terjadi ketika pengambil keputusan langsung memilih keputusan pertama yang dianggap cukup baik, tanpa menganalisis alternatif lain dan tanpa memastikan apakah itu pilihan paling optimal, yang sering menyebabkan penurunan efektivitas."
+  },
+  {
+    "id": 111,
+    "question": "Memastikan pelatihan yang dilaksanakan sudah sesuai dengan tujuan pelatihan adalah proses....",
+    "options": [
+      {"key": "A", "text": "analisis kebutuhan pelatihan"},
+      {"key": "B", "text": "evaluasi pelatihan"},
+      {"key": "C", "text": "mengembangkan program pelatihan"},
+      {"key": "D", "text": "implementasi pelatihan"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Evaluasi Pelatihan adalah tahap untuk menilai apakah pelatihan yang telah dilaksanakan sudah mencapai tujuan yang ditetapkan dengan cara membandingkan hasil pelatihan dengan tujuan awal."
+  },
+  {
+    "id": 112,
+    "question": "Pada saat organisasi membuat perencanaan strategis, proses yang harus dilakukan setelah formulasi tujuan yaitu...",
+    "options": [
+      {"key": "A", "text": "analisis tujuan dan strategi saat ini"},
+      {"key": "B", "text": "pengambilan keputusan strategis"},
+      {"key": "C", "text": "identifikasi kesempatan strategis"},
+      {"key": "D", "text": "pelaksanaan strategi"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Dalam proses perencanaan strategis, langkah setelah Formulasi Tujuan adalah Analisis Tujuan dan Strategi Saat Ini, untuk menilai apakah strategi yang sedang berjalan masih relevan dengan tujuan dan kondisi lingkungan."
+  },
+  {
+    "id": 113,
+    "question": "Dalam struktur organisasi PT. EFG, Aldi ditunjuk sebagai seorang manajer pabrik beliau menjadi atasan dari 3 orang kepala divisi...",
+    "options": [
+      {"key": "A", "text": "rentang kendali 3"},
+      {"key": "B", "text": "rentang kendali 4"},
+      {"key": "C", "text": "rentang kendali 5"},
+      {"key": "D", "text": "rentang kendali 6"}
+    ],
+    "correctAnswer": "A",
+    "explanation": "Rentang kendali (span of control) adalah jumlah bawahan yang bertanggung jawab langsung kepada seorang atasan. Dalam kasus ini, Manajer Pabrik Aldi mengawasi 3 Kepala Divisi, sehingga rentang kendalinya adalah 3."
+  },
+  {
+    "id": 114,
+    "question": "Aset perusahaan terdiri dari kas, piutang, dan persediaan. Analisis laporan keuangan yang mengukur rasio aset dibandingkan dengan kewajiban jangka pendek adalah rasio....",
+    "options": [
+      {"key": "A", "text": "solvabilitas"},
+      {"key": "B", "text": "likuiditas"},
+      {"key": "C", "text": "profitabilitas"},
+      {"key": "D", "text": "aktivitas"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Rasio Likuiditas (Liquidity Ratio) mengukur kemampuan perusahaan melunasi kewajiban jangka pendeknya (utang yang segera jatuh tempo) dengan aset lancar yang dimiliki (seperti kas, piutang, dan persediaan)."
+  },
+  {
+    "id": 115,
+    "question": "Pemekaran kerja merupakan contoh dari pendekatan desain kerja yaitu....",
+    "options": [
+      {"key": "A", "text": "mekanis"},
+      {"key": "B", "text": "motivasional"},
+      {"key": "C", "text": "biologi"},
+      {"key": "D", "text": "motor"}
+    ],
+    "correctAnswer": "B",
+    "explanation": "Pemekaran kerja (job enlargement) adalah upaya untuk meningkatkan motivasi dan kepuasan kerja karyawan dengan cara menambah variasi tugas atau tanggung jawab dalam pekerjaannya agar tidak monoton. Pendekatan ini termasuk dalam pendekatan desain kerja motivasional, karena tujuannya untuk membuat pekerjaan lebih menarik dan menumbuhkan semangat kerja."
+  }
+]
+</script>
+
+<script>
+    // Helper function
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => document.querySelectorAll(selector);
+
+    // Global state
+    const state = {
+        idx: 0, 
+        mode: 'latihan', // 'latihan', 'ujian', or 'hasil'
+        shuffled: false,
+        examIds: [], // array of question IDs for exam mode
+        timeLeft: 0,
+        timerInterval: null,
+        
+        // Data stored in Local Storage
+        answers: {}, // {questionId: selectedOptionLetter}
+        bookmarks: {}, // {questionId: true/false}
+        notes: {}, // {questionId: noteText}
+    };
+
+    let QUESTIONS = [];
+    const LOCAL_STORAGE_KEY = 'ekma4116_mobile_quiz_state';
+
+    // --- Motivational Messages ---
+    const CORRECT_MESSAGES = [
+        "🥳 Nice! 🎉🎊", 
+        "Ela pinter banget! 👏", 
+        "Woww, memang pinter banget tuan putri aku! 🥰", 
+        "Teruskan, tuan putriii! 🥰💪🔥",
+        "Jawabannya setajam silet! ✨"
+    ];
+    const WRONG_MESSAGES = [
+        "Aduh, coba lagi ya. 🥺", 
+        "Ups, keliru dikit. Semangat revisi! 💪", 
+        "Jangan sedih, cantik. Pelajari lagi! 🧠", 
+        "Ini pelajaran berharga! Cek penjelasannya ya. 😉"
+    ];
+    const GENERAL_MESSAGES = [
+        "Semangat, Elaa! 🔥💪", 
+        "Dikit lagi ihh! 😬", 
+        "Yang sabar ya cantiik! 🤭", 
+        "Fokus ya, Tuan Putri! Kamu pasti bisa! 👑"
+    ];
+
+    function getRandomMessage(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function showToast(message, type = 'info') {
+        const existingToast = $('.toast');
+        if (existingToast) existingToast.remove(); // Remove previous toast
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        
+        // Add custom styling based on type
+        const root = document.documentElement;
+        if (type === 'correct') {
+            toast.style.background = getComputedStyle(root).getPropertyValue('--ok-light');
+            toast.style.color = getComputedStyle(root).getPropertyValue('--ok-dark');
+        } else if (type === 'wrong') {
+            toast.style.background = getComputedStyle(root).getPropertyValue('--error-light');
+            toast.style.color = getComputedStyle(root).getPropertyValue('--error-dark');
+        } else {
+            // General messages when navigating
+            toast.style.background = getComputedStyle(root).getPropertyValue('--accent-light');
+            toast.style.color = getComputedStyle(root).getPropertyValue('--accent-dark');
+        }
+        
+        document.body.appendChild(toast);
+
+        // Show
+        setTimeout(() => { toast.classList.add('show'); }, 10);
+        
+        // Hide
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.addEventListener('transitionend', () => toast.remove());
+        }, 3000);
+    }
+    
+    // --- Core State & Data Functions ---
+
+    function loadState() {
+        const savedState = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (savedState) {
+            const loaded = JSON.parse(savedState);
+            // Only load essential and safe state parts
+            state.idx = loaded.idx || 0;
+            state.mode = loaded.mode || 'latihan';
+            state.shuffled = loaded.shuffled || false;
+            state.examIds = loaded.examIds || [];
+            state.timeLeft = loaded.timeLeft || 0;
+            state.answers = loaded.answers || {};
+            state.bookmarks = loaded.bookmarks || {};
+            state.notes = loaded.notes || {};
+        }
+    }
+
+    function saveState() {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({
+            idx: state.idx,
+            mode: state.mode,
+            shuffled: state.shuffled,
+            examIds: state.examIds,
+            timeLeft: state.timeLeft,
+            answers: state.answers,
+            bookmarks: state.bookmarks,
+            notes: state.notes
+        }));
+    }
+
+    function getQuestionIds() {
+        if (state.mode === 'ujian') {
+            return state.examIds;
+        }
+        return QUESTIONS.map(q => q.id);
+    }
+    
+    function getCurrentQuestion() {
+        const ids = getQuestionIds();
+        const currentId = ids[state.idx];
+        return QUESTIONS.find(q => q.id === currentId);
+    }
+    
+    function navigate(direction) {
+        const ids = getQuestionIds();
+        const oldIndex = state.idx;
+        
+        if (direction === 'next') {
+            state.idx = Math.min(ids.length - 1, state.idx + 1);
+        } else if (direction === 'prev') {
+            state.idx = Math.max(0, state.idx - 1);
+        } else if (direction === 'jump10') {
+            state.idx = Math.min(ids.length - 1, state.idx + 10);
+        }
+
+        // Only show message if navigation actually occurred (not at boundaries)
+        if (oldIndex !== state.idx) {
+             showToast(getRandomMessage(GENERAL_MESSAGES), 'info');
+        }
+        render();
+    }
+
+    // --- Rendering Logic ---
+
+    function render() {
+        const ids = getQuestionIds();
+        const currentQ = getCurrentQuestion();
+        
+        if (!currentQ) {
+            $('#qtext').textContent = "Tidak ada soal yang dimuat.";
+            return;
+        }
+
+        // 1. Boundary Checks
+        if (state.idx < 0) state.idx = 0;
+        if (state.idx >= ids.length) state.idx = ids.length - 1;
+        
+        // 2. Render Question Details
+        $('#qnum').textContent = state.idx + 1;
+        $('#qtotal').textContent = ids.length;
+        $('#qtext').textContent = `${state.idx + 1}. ${currentQ.question}`;
+        
+        // 3. Render Options
+        $('#opts').innerHTML = '';
+        const selectedAnswer = state.answers[currentQ.id];
+        const isAnswered = !!selectedAnswer;
+
+        // Force explanation visibility if answered or in result mode
+        const showExplanation = isAnswered || state.mode === 'hasil';
+        
+        currentQ.options.forEach(opt => {
+            const optEl = document.createElement('div');
+            optEl.classList.add('opt');
+            optEl.innerHTML = `<div>${opt.key}</div><div>${opt.text}</div>`;
+            
+            // Apply selection state
+            if (selectedAnswer === opt.key) {
+                optEl.classList.add('sel');
+            }
+            
+            // Apply instant feedback colors
+            if (showExplanation) {
+                // Remove selection class for cleaner look when feedback is visible
+                optEl.classList.remove('sel'); 
+                
+                // Mark correct answer
+                if (opt.key === currentQ.correctAnswer) {
+                    optEl.classList.add('correct-answer');
+                }
+                
+                // Mark user's wrong answer
+                if (selectedAnswer === opt.key && selectedAnswer !== currentQ.correctAnswer) {
+                    optEl.classList.add('wrong');
+                }
+            }
+            
+            // Add click listener only if not answered yet, and not in result mode
+            if (!isAnswered && state.mode !== 'hasil') {
+                optEl.addEventListener('click', () => handleOptionClick(currentQ.id, opt.key, optEl));
+            } else if (state.mode === 'latihan' && !showExplanation) {
+                 // Still clickable in Latihan mode if not answered and explanation is hidden
+                 optEl.addEventListener('click', () => handleOptionClick(currentQ.id, opt.key, optEl));
+            }
+
+
+            $('#opts').appendChild(optEl);
+        });
+
+        // 4. Render Explanation Box
+        if (showExplanation) {
+            $('#explanation-text').textContent = currentQ.explanation;
+            $('#explanation-box').classList.remove('hidden');
+        } else {
+            $('#explanation-box').classList.add('hidden');
+        }
+
+        // 5. Render Bookmark Button
+        const bookmarkBtn = $$('.bookmark');
+        bookmarkBtn.forEach(btn => {
+            if (state.bookmarks[currentQ.id]) {
+                btn.classList.add('primary');
+                btn.textContent = '✅ Unbookmark';
+            } else {
+                btn.classList.remove('primary');
+                btn.textContent = '📌 Bookmark';
+            }
+        });
+
+        // 6. Render Notes
+        $('#notes').value = state.notes[currentQ.id] || '';
+        
+        // 7. Render Navigation Grid and Progress
+        renderGrid();
+        updateProgress();
+
+        // 8. Update Nav Buttons State
+        $$('.prev').forEach(btn => btn.disabled = state.idx === 0);
+        $$('.next').forEach(btn => btn.disabled = state.idx === ids.length - 1);
+        
+        saveState();
+    }
+
+    function handleOptionClick(questionId, optionKey, clickedEl) {
+        const currentQ = getCurrentQuestion();
+        
+        // Disable further clicks on options after one selection
+        $$('#opts .opt').forEach(el => el.style.pointerEvents = 'none');
+        
+        // Update state and visual
+        state.answers[questionId] = optionKey;
+
+        // 1. Determine Correctness and Show Toast
+        const isCorrect = optionKey === currentQ.correctAnswer;
+        if (isCorrect) {
+            showToast(getRandomMessage(CORRECT_MESSAGES), 'correct');
+        } else {
+            showToast(getRandomMessage(WRONG_MESSAGES), 'wrong');
+        }
+        
+        // 2. Force Show Explanation and Render Feedback
+        $('#showExplanation').checked = true;
+        
+        saveState();
+        render(); // Re-render to show feedback colors and explanation
+        
+        // Re-enable clicks
+        $$('#opts .opt').forEach(el => el.style.pointerEvents = 'auto');
+    }
+
+    function renderGrid() {
+        const gridEl = $('#grid');
+        gridEl.innerHTML = '';
+        const ids = getQuestionIds();
+        
+        ids.forEach((id, index) => {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.textContent = index + 1;
+            
+            if (index === state.idx) {
+                cell.classList.add('cur');
+            }
+            if (state.answers[id]) {
+                cell.classList.add('done');
+            }
+            if (state.bookmarks[id]) {
+                cell.classList.add('mark');
+            }
+            
+            cell.addEventListener('click', () => { state.idx = index; render(); });
+            gridEl.appendChild(cell);
+        });
+    }
+
+    function updateProgress() {
+        const ids = getQuestionIds();
+        const answeredCount = ids.filter(id => state.answers[id]).length;
+        const bookmarkedCount = ids.filter(id => state.bookmarks[id]).length;
+        
+        $('#answered').textContent = answeredCount;
+        $('#bookCount').textContent = bookmarkedCount;
+        
+        const progressPercent = (answeredCount / ids.length) * 100;
+        $('#progress').style.width = `${progressPercent}%`;
+    }
+    
+    function toggleBookmark() {
+        const currentQ = getCurrentQuestion();
+        const isBookmarked = !!state.bookmarks[currentQ.id];
+        if (isBookmarked) {
+            delete state.bookmarks[currentQ.id];
+        } else {
+            state.bookmarks[currentQ.id] = true;
+            showToast("Soal di-bookmark! 🔖");
+        }
+        saveState();
+        render();
+    }
+    
+    function clearAnswer() {
+        const currentQ = getCurrentQuestion();
+        delete state.answers[currentQ.id];
+        showToast("Jawaban dikosongkan. 🗑️");
+        saveState();
+        render();
+    }
+    
+    // --- Event Listeners & Handlers ---
+    
+    // Navigation (Desktop and Mobile)
+    $$('.prev').forEach(btn => btn.addEventListener('click', () => navigate('prev')));
+    $$('.next').forEach(btn => btn.addEventListener('click', () => navigate('next')));
+    $('.jump10').addEventListener('click', () => navigate('jump10'));
+    
+    // Action Buttons
+    $$('.bookmark').forEach(btn => btn.addEventListener('click', toggleBookmark));
+    $('.clear').addEventListener('click', clearAnswer);
+
+    // Shuffle Checkbox
+    $('#shuffle').addEventListener('change', (e) => {
+        state.shuffled = e.target.checked;
+        if (state.shuffled) {
+            QUESTIONS = shuffleArray(QUESTIONS);
+            showToast("Urutan soal diacak! Siap-siap, Ela! 🌀");
+        } else {
+            QUESTIONS.sort((a, b) => a.id - b.id);
+            showToast("Urutan soal kembali normal.");
+        }
+        state.idx = 0; // Reset index to start
+        saveState();
+        render();
+    });
+    
+    // Notes Autosave
+    $('#notes').addEventListener('input', (e) => {
+        const currentQ = getCurrentQuestion();
+        state.notes[currentQ.id] = e.target.value;
+        saveState();
+    });
+    
+    // Shuffle utility function (Fisher-Yates)
+    function shuffleArray(array) {
+        let newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
+    
+    // --- Exam Mode Logic ---
+    function startTimer() {
+        if (state.timerInterval) clearInterval(state.timerInterval);
+        state.timerInterval = setInterval(() => {
+            state.timeLeft--;
+            if (state.timeLeft < 0) {
+                state.timeLeft = 0;
+                endExam();
+                return;
+            }
+            updateTimerDisplay();
+            saveState();
+        }, 1000);
+    }
+    
+    function updateTimerDisplay() {
+        const h = Math.floor(state.timeLeft / 3600);
+        const m = Math.floor((state.timeLeft % 3600) / 60);
+        const s = state.timeLeft % 60;
+        const formatted = [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
+        $('#timer').textContent = formatted;
+    }
+
+    function startExam() {
+        const totalQ = QUESTIONS.length;
+        const count = Math.max(5, Math.min(totalQ, parseInt($('#jumlah').value || '50', 10)));
+        const minutes = Math.max(5, Math.min(240, parseInt($('#menit').value || '60', 10)));
+        
+        // Prepare new exam state
+        const allIds = QUESTIONS.map(q => q.id);
+        const shuffledIds = shuffleArray(allIds).slice(0, count);
+        
+        state.mode = 'ujian';
+        state.idx = 0;
+        state.examIds = shuffledIds;
+        state.timeLeft = minutes * 60;
+        state.answers = {}; // Reset answers for the exam
+        state.bookmarks = {}; // Reset bookmarks for the exam
+        
+        // UI Changes
+        $('#timer').classList.remove('hidden');
+        $('.startExam').classList.add('hidden');
+        $('.endExam').classList.remove('hidden');
+        $('#question-view').classList.remove('hidden');
+        $('#exam-result').classList.add('hidden');
+
+        // Disable exam settings inputs
+        $('#jumlah').disabled = true;
+        $('#menit').disabled = true;
+        $('#shuffle').disabled = true;
+        
+        startTimer();
+        showToast("Mode Ujian Aktif! Semangat Elaa! 🔥💪", 'info');
+        render();
+    }
+    
+    function endExam() {
+        if (state.timerInterval) clearInterval(state.timerInterval);
+        state.mode = 'hasil';
+        
+        // Calculate Score
+        const ids = state.examIds.length > 0 ? state.examIds : getQuestionIds();
+        let correctCount = 0;
+        let totalAnswered = 0;
+        
+        ids.forEach(id => {
+            const q = QUESTIONS.find(q => q.id === id);
+            const answer = state.answers[id];
+            if (answer) {
+                totalAnswered++;
+                if (answer === q.correctAnswer) {
+                    correctCount++;
+                }
+            }
+        });
+        
+        const totalExamQ = ids.length;
+        const score = (correctCount / totalExamQ) * 100;
+        const grade = score >= 60 ? 'Lulus' : 'Belum Lulus';
+
+        let message = `Hasil Ujianmu: **${correctCount}/${totalExamQ}** Jawaban Benar. `;
+        message += `Nilai Akhir: **${score.toFixed(2)}** (${grade}).`;
+        message += `<br>Kamu menjawab ${totalAnswered} soal dari ${totalExamQ} soal yang diujikan.`;
+        if (state.timeLeft > 0) {
+            message += `<br>Sisa waktu: ${formatTime(state.timeLeft)}.`;
+        }
+
+        $('#final-score').innerHTML = message;
+
+        // UI Changes
+        $('#question-view').classList.add('hidden');
+        $('#exam-result').classList.remove('hidden');
+        $('#timer').classList.add('hidden');
+        $('.endExam').classList.add('hidden');
+        
+        // If viewing result, re-render first question for review mode
+        if (totalExamQ > 0) {
+            state.idx = 0;
+        }
+
+        saveState();
+    }
+    
+    function formatTime(totalSeconds) {
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+        return [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
+    }
+
+    $('.startExam').addEventListener('click', startExam);
+    $('.endExam').addEventListener('click', endExam);
+    
+    // --- Initialization ---
+
+    function init() {
+        // 1. Load Data
+        try {
+            QUESTIONS = JSON.parse($('#data').textContent);
+            $('#total-header').textContent = QUESTIONS.length;
+            $('#jumlah').max = QUESTIONS.length;
+        } catch (e) {
+            console.error("Gagal memuat data soal:", e);
+            $('#qtext').textContent = "Error: Data soal tidak valid.";
+            return;
+        }
+
+        // 2. Load State and Apply
+        loadState();
+        
+        // Sort/Shuffle Data based on state
+        if (state.shuffled) {
+            $('#shuffle').checked = true;
+            QUESTIONS = shuffleArray(QUESTIONS);
+        } else {
+            QUESTIONS.sort((a, b) => a.id - b.id);
+        }
+
+        // 3. Handle Exam Continuation or Result View
+        if (state.mode === 'ujian') {
+            $('#timer').classList.remove('hidden');
+            $('.startExam').classList.add('hidden');
+            $('.endExam').classList.remove('hidden');
+            $('#jumlah').disabled = true;
+            $('#menit').disabled = true;
+            $('#shuffle').disabled = true;
+            updateTimerDisplay();
+            startTimer(); // Restart timer
+            showToast("Selamat datang kembali, Tuan Putri! Ujian dilanjutkan. 👑", 'info');
+        } else if (state.mode === 'hasil') {
+             endExam(); // Re-render result from saved state
+             return;
+        } else {
+             // Latihan Mode
+             $('#question-view').classList.remove('hidden');
+             $('#exam-result').classList.add('hidden');
+             showToast("Semangat, Elaa! 🔥💪", 'info');
+        }
+
+        // 4. Initial Render
+        render();
+    }
+
+    // Export function
+    $('.export').addEventListener('click', () => {
+        const payload = { 
+            ts: new Date().toISOString(), 
+            mode: state.mode, 
+            answers: state.answers, 
+            bookmarks: state.bookmarks, 
+            notes: state.notes,
+            total_questions: QUESTIONS.length,
+            exam_ids: state.examIds 
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = Object.assign(document.createElement('a'), { href: url, download: 'manajemen-progress.json' });
+        a.click(); 
+        URL.revokeObjectURL(url);
+        showToast("Progress berhasil diexport! 💾");
+    });
+
+    init();
+</script>
+
+</body>
+</html>
